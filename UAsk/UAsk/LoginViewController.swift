@@ -8,19 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class LoginViewController: UIViewController {
+    
+    
+    @IBAction func buttonLogin(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "QuestionTransition", sender: self)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-
-        // test 2
-        
-        // test 3
-        // olivia test
-        // megan comment 
-
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
 
