@@ -14,9 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
 
-        //test 2
+        // test 2
         
-
+        // test 3
         // megan comment 
 
         // Do any additional setup after loading the view, typically from a nib.
