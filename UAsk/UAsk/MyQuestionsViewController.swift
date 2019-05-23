@@ -10,6 +10,12 @@ import UIKit
 
 class MyQuestionsViewController: UIViewController {
 
+    @IBAction func buttonAnswers(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let privateAnswersVC = storyboard.instantiateViewController(withIdentifier: "PrivateAnswersViewController")
+        
+        self.present(privateAnswersVC, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

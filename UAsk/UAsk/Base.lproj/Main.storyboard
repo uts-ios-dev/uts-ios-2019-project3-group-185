@@ -10,6 +10,60 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Create User View Controller-->
+        <scene sceneID="QR5-9p-4YR">
+            <objects>
+                <viewController id="cTb-9R-MVB" customClass="CreateUserViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZH0-Py-AJo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Account Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1o2-N5-MuT">
+                                <rect key="frame" x="88.5" y="319" width="198" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1o2-N5-MuT" firstAttribute="centerY" secondItem="ZH0-Py-AJo" secondAttribute="centerY" id="YTQ-3D-KGQ"/>
+                            <constraint firstItem="1o2-N5-MuT" firstAttribute="centerX" secondItem="ZH0-Py-AJo" secondAttribute="centerX" id="sV1-di-EPU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hHq-Sm-Pad"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ie7-1C-417" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1454" y="-462"/>
+        </scene>
+        <!--Private Answers View Controller-->
+        <scene sceneID="FFK-t4-QEG">
+            <objects>
+                <viewController storyboardIdentifier="PrivateAnswersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW8-ZX-QhO" customClass="PrivateAnswersViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="shE-4I-32T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Answers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-AS-9mN">
+                                <rect key="frame" x="101" y="318.5" width="173" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6JE-AS-9mN" firstAttribute="centerY" secondItem="shE-4I-32T" secondAttribute="centerY" id="fnP-Yb-fEe"/>
+                            <constraint firstItem="6JE-AS-9mN" firstAttribute="centerX" secondItem="shE-4I-32T" secondAttribute="centerX" id="poR-93-aGB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lkp-iP-gFk"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cct-MU-S5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2265" y="-96"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -26,20 +80,32 @@
                                     <action selector="buttonLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d2h-F6-1Qm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8o-lY-UeI">
+                                <rect key="frame" x="120" y="463" width="135" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="buttonCreate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCu-En-MLY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="D8o-lY-UeI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="147.5" id="3T2-fV-MtI"/>
                             <constraint firstItem="25A-jq-DvI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cxI-Vl-J3G"/>
+                            <constraint firstItem="D8o-lY-UeI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rBE-0i-iya"/>
                             <constraint firstItem="25A-jq-DvI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rQu-7L-XwB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <segue destination="Yu6-RB-eTE" kind="showDetail" identifier="QuestionTransition" id="D0w-gj-qUh"/>
+                        <segue destination="cTb-9R-MVB" kind="showDetail" identifier="CreateAccountTransition" id="dSt-Dk-2BB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="668" y="-95.802098950524751"/>
         </scene>
         <!--Scroll View Controller-->
         <scene sceneID="VHl-xh-Hk6">
@@ -70,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1A-FG-23m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1389.5999999999999" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1454" y="264"/>
         </scene>
     </scenes>
 </document>
