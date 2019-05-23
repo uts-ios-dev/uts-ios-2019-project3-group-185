@@ -17,6 +17,11 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func buttonCreate(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "CreateAccountTransition", sender: self)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
