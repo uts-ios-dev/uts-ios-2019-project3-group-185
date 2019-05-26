@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ScrollViewController: UIViewController {
     
     
     @IBOutlet weak var fragment: UIScrollView!
     
+    var handle: AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -43,10 +45,23 @@ class ScrollViewController: UIViewController {
         myQuestionsViewControllerFragment.origin.x = 2 * self.view.frame.width
         myQuestionsViewController.view.frame = myQuestionsViewControllerFragment
         
-        self.fragment.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.size.height)
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            // Handle stuff
+        }
         
+        self.fragment.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.size.height)
         
     }
     
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch (let error) {
+            print("Auth sign out failed: \(error)")
+        }
+    }
+    
 }
+    
