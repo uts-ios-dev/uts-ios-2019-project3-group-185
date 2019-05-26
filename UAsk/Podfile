@@ -7,6 +7,7 @@ target 'UAsk' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   source 'https://github.com/CocoaPods/Specs.git'
 
