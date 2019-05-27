@@ -19,15 +19,15 @@ class ScrollViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        var viewQuestionsViewController : ViewQuestionsViewController = ViewQuestionsViewController(nibName: "ViewQuestionsViewController", bundle: nil)
+        var viewQuestionsTableViewController : ViewQuestionsTableViewController = ViewQuestionsTableViewController(nibName: "ViewQuestionsTableViewController", bundle: nil)
         
         var answerQuestionsViewController : AnswerQuestionsViewController = AnswerQuestionsViewController(nibName: "AnswerQuestionsViewController", bundle: nil)
         
         var myQuestionsViewController : MyQuestionsViewController = MyQuestionsViewController(nibName: "MyQuestionsViewController", bundle: nil)
         
-        self.addChild(viewQuestionsViewController)
-        self.fragment.addSubview(viewQuestionsViewController.view)
-        viewQuestionsViewController.didMove(toParent: self)
+        self.addChild(viewQuestionsTableViewController)
+        self.fragment.addSubview(viewQuestionsTableViewController.view)
+        viewQuestionsTableViewController.didMove(toParent: self)
         
         self.addChild(answerQuestionsViewController)
         self.fragment.addSubview(answerQuestionsViewController.view)
