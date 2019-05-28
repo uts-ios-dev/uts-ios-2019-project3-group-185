@@ -1,14 +1,14 @@
 //
-//  ViewQuestionsViewController.swift
+//  AskQuestionViewController.swift
 //  UAsk
 //
-//  Created by William Hong on 22/5/19.
+//  Created by William Hong on 29/5/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
 //
 
 import UIKit
 
-class ViewQuestionsViewController: UIViewController {
+class AskQuestionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

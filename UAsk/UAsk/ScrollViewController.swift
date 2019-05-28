@@ -19,31 +19,31 @@ class ScrollViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        var viewQuestionsViewController : ViewQuestionsViewController = ViewQuestionsViewController(nibName: "ViewQuestionsViewController", bundle: nil)
+        var viewQuestionsTableViewController : ViewQuestionsTableViewController = ViewQuestionsTableViewController(nibName: "ViewQuestionsTableViewController", bundle: nil)
         
-        var answerQuestionsViewController : AnswerQuestionsViewController = AnswerQuestionsViewController(nibName: "AnswerQuestionsViewController", bundle: nil)
+        var myQuestionsTableTableViewController : MyQuestionsTableTableViewController = MyQuestionsTableTableViewController(nibName: "MyQuestionsTableTableViewController", bundle: nil)
         
-        var myQuestionsViewController : MyQuestionsViewController = MyQuestionsViewController(nibName: "MyQuestionsViewController", bundle: nil)
+        var askQuestionViewController : AskQuestionViewController = AskQuestionViewController(nibName: "AskQuestionViewController", bundle: nil)
         
-        self.addChild(viewQuestionsViewController)
-        self.fragment.addSubview(viewQuestionsViewController.view)
-        viewQuestionsViewController.didMove(toParent: self)
+        self.addChild(askQuestionViewController)
+        self.fragment.addSubview(askQuestionViewController.view)
+        askQuestionViewController.didMove(toParent: self)
         
-        self.addChild(answerQuestionsViewController)
-        self.fragment.addSubview(answerQuestionsViewController.view)
-        answerQuestionsViewController.didMove(toParent: self)
+        self.addChild(viewQuestionsTableViewController)
+        self.fragment.addSubview(viewQuestionsTableViewController.view)
+        viewQuestionsTableViewController.didMove(toParent: self)
         
-        self.addChild(myQuestionsViewController)
-        self.fragment.addSubview(myQuestionsViewController.view)
-        myQuestionsViewController.didMove(toParent: self)
+        self.addChild(myQuestionsTableTableViewController)
+        self.fragment.addSubview(myQuestionsTableTableViewController.view)
+        myQuestionsTableTableViewController.didMove(toParent: self)
         
-        var answerQuestionsViewControllerFragment : CGRect = answerQuestionsViewController.view.frame
-        answerQuestionsViewControllerFragment.origin.x = self.view.frame.width
-        answerQuestionsViewController.view.frame = answerQuestionsViewControllerFragment
+        var viewQuestionsTableViewControllerFragment : CGRect = viewQuestionsTableViewController.view.frame
+        viewQuestionsTableViewControllerFragment.origin.x = self.view.frame.width
+        viewQuestionsTableViewController.view.frame = viewQuestionsTableViewControllerFragment
         
-        var myQuestionsViewControllerFragment : CGRect = myQuestionsViewController.view.frame
-        myQuestionsViewControllerFragment.origin.x = 2 * self.view.frame.width
-        myQuestionsViewController.view.frame = myQuestionsViewControllerFragment
+        var myQuestionsTableTableViewControllerFragment : CGRect = myQuestionsTableTableViewController.view.frame
+        myQuestionsTableTableViewControllerFragment.origin.x = 2 * self.view.frame.width
+        myQuestionsTableTableViewController.view.frame = myQuestionsTableTableViewControllerFragment
         
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             // Handle stuff

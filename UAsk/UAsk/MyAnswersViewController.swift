@@ -8,13 +8,10 @@
 
 import UIKit
 
-class CreateUserViewController: UIViewController {
+class MyAnswersViewController: UIViewController {
     
-    
-    @IBAction func createAccountButton(_ sender: Any) {
-    
-         self.performSegue(withIdentifier: "LoginTransition", sender: self)
-        
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

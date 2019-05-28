@@ -8,12 +8,19 @@
 
 import UIKit
 
-class PrivateAnswersViewController: UIViewController {
+class AnswersViewController: UIViewController {
     
+    @IBAction func submitButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBOutlet weak var hello: UILabel!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
     }
     
     

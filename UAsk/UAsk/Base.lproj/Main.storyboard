@@ -24,50 +24,76 @@
                                 <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKN-Ej-M1T">
+                                <rect key="frame" x="113.5" y="438" width="148" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="createAccountButton:" destination="cTb-9R-MVB" eventType="touchUpInside" id="0Kp-0X-wyN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="rKN-Ej-M1T" firstAttribute="centerX" secondItem="ZH0-Py-AJo" secondAttribute="centerX" id="7gK-Ex-1u6"/>
+                            <constraint firstItem="rKN-Ej-M1T" firstAttribute="top" secondItem="1o2-N5-MuT" secondAttribute="bottom" constant="90" id="QIP-PB-Qcb"/>
                             <constraint firstItem="1o2-N5-MuT" firstAttribute="centerY" secondItem="ZH0-Py-AJo" secondAttribute="centerY" id="YTQ-3D-KGQ"/>
                             <constraint firstItem="1o2-N5-MuT" firstAttribute="centerX" secondItem="ZH0-Py-AJo" secondAttribute="centerX" id="sV1-di-EPU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hHq-Sm-Pad"/>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="LoginTransition" id="XrZ-IN-kyY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ie7-1C-417" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1454" y="-462"/>
         </scene>
-        <!--Private Answers View Controller-->
+        <!--Answers View Controller-->
         <scene sceneID="FFK-t4-QEG">
             <objects>
-                <viewController storyboardIdentifier="PrivateAnswersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SW8-ZX-QhO" customClass="PrivateAnswersViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnswersViewController" modalPresentationStyle="overFullScreen" id="SW8-ZX-QhO" customClass="AnswersViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="shE-4I-32T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Answers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-AS-9mN">
-                                <rect key="frame" x="101" y="318.5" width="173" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-AS-9mN">
+                                <rect key="frame" x="89.5" y="318.5" width="196.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9z-Rd-8ZL">
+                                <rect key="frame" x="154" y="445" width="68" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButton:" destination="SW8-ZX-QhO" eventType="touchUpInside" id="1Iv-TB-pdV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="U9z-Rd-8ZL" firstAttribute="centerX" secondItem="shE-4I-32T" secondAttribute="centerX" id="KfC-Vy-4Iz"/>
                             <constraint firstItem="6JE-AS-9mN" firstAttribute="centerY" secondItem="shE-4I-32T" secondAttribute="centerY" id="fnP-Yb-fEe"/>
+                            <constraint firstItem="U9z-Rd-8ZL" firstAttribute="top" secondItem="6JE-AS-9mN" secondAttribute="bottom" constant="96.5" id="gj2-1p-lgN"/>
                             <constraint firstItem="6JE-AS-9mN" firstAttribute="centerX" secondItem="shE-4I-32T" secondAttribute="centerX" id="poR-93-aGB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lkp-iP-gFk"/>
                     </view>
+                    <connections>
+                        <outlet property="hello" destination="6JE-AS-9mN" id="yZh-Vo-gGZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cct-MU-S5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2265" y="-96"/>
+            <point key="canvasLocation" x="2380" y="-1325.4872563718143"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,14 +121,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXn-PO-cyW">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXn-PO-cyW">
                                 <rect key="frame" x="120" y="203" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-LD-N6q">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pqi-LD-N6q">
                                 <rect key="frame" x="120" y="151" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -128,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="-95.802098950524751"/>
+            <point key="canvasLocation" x="1004" y="-1325"/>
         </scene>
         <!--Scroll View Controller-->
         <scene sceneID="VHl-xh-Hk6">
@@ -141,15 +167,16 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NoM-yD-ZwJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="667" id="Web-3W-Xnc"/>
-                                    <constraint firstAttribute="width" constant="375" id="bsC-BL-KSl"/>
+                                    <constraint firstAttribute="height" constant="667" id="IBc-8M-cF1"/>
+                                    <constraint firstAttribute="width" constant="375" id="RpL-tH-jC7"/>
+                                    <constraint firstAttribute="width" secondItem="NoM-yD-ZwJ" secondAttribute="height" multiplier="375:667" id="qSY-Cb-cL5"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NoM-yD-ZwJ" firstAttribute="centerY" secondItem="ZWR-kt-RyR" secondAttribute="centerY" id="Vds-KL-tPv"/>
-                            <constraint firstItem="NoM-yD-ZwJ" firstAttribute="centerX" secondItem="ZWR-kt-RyR" secondAttribute="centerX" id="haK-Ij-ylz"/>
+                            <constraint firstItem="NoM-yD-ZwJ" firstAttribute="centerY" secondItem="ZWR-kt-RyR" secondAttribute="centerY" id="OZn-DV-t9a"/>
+                            <constraint firstItem="NoM-yD-ZwJ" firstAttribute="centerX" secondItem="ZWR-kt-RyR" secondAttribute="centerX" id="Y9Z-6Q-Ooi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eZT-ky-4oG"/>
                     </view>
@@ -159,7 +186,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1A-FG-23m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="264"/>
+            <point key="canvasLocation" x="231" y="-463"/>
+        </scene>
+        <!--My Answers View Controller-->
+        <scene sceneID="rB9-Mb-nSq">
+            <objects>
+                <viewController storyboardIdentifier="MyAnswersViewController" modalPresentationStyle="overFullScreen" id="dPN-f0-krY" customClass="MyAnswersViewController" customModule="UAsk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q5T-np-GqH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYo-v8-dx2">
+                                <rect key="frame" x="155" y="314.5" width="65" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="backButton:" destination="dPN-f0-krY" eventType="touchUpInside" id="Gtz-Va-Zpn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bYo-v8-dx2" firstAttribute="centerX" secondItem="Q5T-np-GqH" secondAttribute="centerX" id="HAV-nI-Iwb"/>
+                            <constraint firstItem="bYo-v8-dx2" firstAttribute="centerY" secondItem="Q5T-np-GqH" secondAttribute="centerY" id="h1c-Y9-8fY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ChF-dr-Bes"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LvG-Yg-qxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3164" y="-1325"/>
         </scene>
     </scenes>
 </document>
