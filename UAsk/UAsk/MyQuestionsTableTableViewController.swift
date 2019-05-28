@@ -1,26 +1,20 @@
 //
-//  ViewQuestionsTableViewController.swift
+//  MyQuestionsTableTableViewController.swift
 //  UAsk
 //
-//  Created by William Hong on 27/5/19.
+//  Created by William Hong on 29/5/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
 //
 
 import UIKit
 
-struct cellData{
-    let cell : Int!
-    let text : String!
-    //  let image : UIImage!
-}
-
-class ViewQuestionsTableViewController: UITableViewController {
+class MyQuestionsTableTableViewController: UITableViewController {
         
     var arrayOfCellData = [cellData]()
     
     override func viewDidLoad() {
         
-        arrayOfCellData = [cellData(cell: 1, text: "Will"),cellData(cell: 2, text: "Oliv"),cellData(cell: 3, text: "Meg")]
+        arrayOfCellData = [cellData(cell: 1, text: "My Will"),cellData(cell: 2, text: "My Oliv"),cellData(cell: 3, text: "My Meg")]
     }
     
     
@@ -31,17 +25,17 @@ class ViewQuestionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if arrayOfCellData[indexPath.row].cell == 1 {
-            let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
+            let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
             
-            cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
+            cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
             
             return cell
             
         }
         else {
-            let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
+            let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
             
-            cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
+            cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
             
             return cell
         }
@@ -62,11 +56,11 @@ class ViewQuestionsTableViewController: UITableViewController {
         let viewController : String
         switch indexPath.row {
         case 0: //For "one"
-            viewController = "AnswersViewController"
+            viewController = "MyAnswersViewController"
         case 1: //For "two"
             viewController = "LoginViewController"
         default: //For "three"
-            viewController = "AnswersViewController"
+            viewController = "MyAnswersViewController"
         }
         
         let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController)
