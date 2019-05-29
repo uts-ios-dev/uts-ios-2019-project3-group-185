@@ -19,8 +19,49 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cq-Wv-fzt">
+                    <rect key="frame" x="112.5" y="110" width="150" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mVY-a9-jQp">
+                    <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="aNp-LU-vGI"/>
+                        <constraint firstAttribute="height" constant="128" id="weJ-LB-CI5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
             <color key="backgroundColor" red="1" green="0.1043915102" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6Ua-v5-uXv"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="DPM-5v-aRw"/>
+                <constraint firstItem="8cq-Wv-fzt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FdM-QC-cAp"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="G61-oW-5Jl"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-66.5" id="JJs-e9-I7t"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="K6V-F4-s3v"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="KGl-a6-fYC"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Lk0-mV-yXa"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="O3a-fo-gNr"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OAx-1n-hzC"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="OyF-if-U0g"/>
+                <constraint firstItem="8cq-Wv-fzt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-207.5" id="Qmo-y3-dkG"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="U4B-TK-hIt"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ust-kJ-1w8"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="10" id="YbT-yM-yVM"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-66.5" id="ZHG-63-1S2"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dBj-ZU-p9b"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="10" id="hNo-FU-vIN"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jtS-GT-CAF"/>
+                <constraint firstItem="mVY-a9-jQp" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ko6-kP-0Bo"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="124.58770614692655"/>
         </view>
     </objects>
 </document>
