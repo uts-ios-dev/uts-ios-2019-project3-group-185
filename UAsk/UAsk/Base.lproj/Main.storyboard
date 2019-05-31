@@ -18,37 +18,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Account Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1o2-N5-MuT">
-                                <rect key="frame" x="88.5" y="319" width="198" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKN-Ej-M1T">
-                                <rect key="frame" x="113.5" y="438" width="148" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKN-Ej-M1T">
+                                <rect key="frame" x="113" y="491" width="148" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
                                     <action selector="createAccountButton:" destination="cTb-9R-MVB" eventType="touchUpInside" id="0Kp-0X-wyN"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UTS Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3by-BO-q1a">
+                                <rect key="frame" x="98" y="140" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U5C-0q-KSJ">
+                                <rect key="frame" x="98" y="359" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-dC-7re">
+                                <rect key="frame" x="98" y="413" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CsD-fJ-1Ld">
+                                <rect key="frame" x="98" y="318" width="177" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-vB-wOu">
+                                <rect key="frame" x="98" y="156" width="177" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZH0-Py-AJo" id="zrq-D6-jpe"/>
+                                    <outlet property="delegate" destination="ZH0-Py-AJo" id="B7M-0e-AtK"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rKN-Ej-M1T" firstAttribute="centerX" secondItem="ZH0-Py-AJo" secondAttribute="centerX" id="7gK-Ex-1u6"/>
-                            <constraint firstItem="rKN-Ej-M1T" firstAttribute="top" secondItem="1o2-N5-MuT" secondAttribute="bottom" constant="90" id="QIP-PB-Qcb"/>
-                            <constraint firstItem="1o2-N5-MuT" firstAttribute="centerY" secondItem="ZH0-Py-AJo" secondAttribute="centerY" id="YTQ-3D-KGQ"/>
-                            <constraint firstItem="1o2-N5-MuT" firstAttribute="centerX" secondItem="ZH0-Py-AJo" secondAttribute="centerX" id="sV1-di-EPU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hHq-Sm-Pad"/>
                     </view>
                     <connections>
+                        <outlet property="emailTxt" destination="3by-BO-q1a" id="zVN-nS-sJl"/>
+                        <outlet property="facultyPicker" destination="pf8-vB-wOu" id="d77-tT-rUG"/>
+                        <outlet property="password1Txt" destination="U5C-0q-KSJ" id="YQM-Bu-Nqk"/>
+                        <outlet property="password2Txt" destination="rtR-dC-7re" id="9ci-1Y-C3K"/>
+                        <outlet property="usernameTxt" destination="CsD-fJ-1Ld" id="zOJ-XA-ece"/>
                         <segue destination="BYZ-38-t0r" kind="showDetail" identifier="LoginTransition" id="XrZ-IN-kyY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ie7-1C-417" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1454" y="-462"/>
+            <point key="canvasLocation" x="1453.5999999999999" y="-462.8185907046477"/>
         </scene>
         <!--Answers View Controller-->
         <scene sceneID="FFK-t4-QEG">
