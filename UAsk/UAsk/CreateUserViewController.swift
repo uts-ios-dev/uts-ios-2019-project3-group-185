@@ -7,22 +7,153 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
-class CreateUserViewController: UIViewController {
+class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return facultyData.count
+    }
+    
+    
+    
+    var handle: AuthStateDidChangeListenerHandle?
+    var db: Firestore!
+
+    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var facultyPicker: UIPickerView!
+    @IBOutlet weak var usernameTxt: UITextField!
+    @IBOutlet weak var password1Txt: UITextField!
+    @IBOutlet weak var password2Txt: UITextField!
+    
+    var email = ""
+    var password = ""
+    
+    var facultyData = ["Faculty","Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
     
     @IBAction func createAccountButton(_ sender: Any) {
+        if (checkFieldValues()) {
+            createFirebaseAccount()
+            self.performSegue(withIdentifier: "LoginTransition", sender: self)
+        } else {
+            print("Failed")
+        }
+    }
     
-         self.performSegue(withIdentifier: "LoginTransition", sender: self)
-        
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return facultyData[row]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        facultyData = ["Faculty", "Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
+        self.facultyPicker.dataSource = self
+        self.facultyPicker.delegate = self
+        
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in 
+            // Handle authenticated state
+        }
+        
+        // [START setup]
+        let settings = FirestoreSettings()
+        
+        Firestore.firestore().settings = settings
+        // [END setup]
+        db = Firestore.firestore()
+        
         // Do any additional setup after loading the view.
     }
     
+    func checkFieldValues() -> Bool {
+        guard let email = emailTxt.text, !email.isEmpty else {
+            return false
+        }
+        
+        guard let username = usernameTxt.text, !username.isEmpty else {
+            return false
+        }
+        
+        guard let password1 = password1Txt.text, !password1.isEmpty else {
+            return false
+        }
+        
+        guard let password2 = password2Txt.text, !password2.isEmpty else {
+            return false
+        }
+        
+        if (!(email.contains("@student.uts.edu.au"))) {
+            return false
+        }
+        
+        let selectedValue = facultyData[facultyPicker.selectedRow(inComponent: 0)]
+        
+        if (selectedValue == "Faculty") {
+            return false
+        }
+        
+        if (password1 != password2) {
+            return false
+        }
+        
+        return true
+    }
+
+    func createFirebaseAccount() {
+        guard let email = emailTxt.text, !email.isEmpty else {
+            return
+        }
+        
+        guard let password = password1Txt.text, !password.isEmpty else {
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            if let error = error, authResult == nil {
+                // do stuff to handle
+                print("Firebase error")
+            }
+        }
+        
+        let docData: [String: Any] = [
+            "name": usernameTxt.text,
+            "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
+            "questions": [],
+        ]
+        
+        Auth.auth().signIn(withEmail: email,
+                           password: password) { (user, error) in
+                            if let error = error, user == nil {
+                                print("Not athenticated")
+                                return
+                            }
+        }
+        
+        var uid = ""
+        
+        let user = Auth.auth().currentUser
+        if let user = user {
+            uid = user.uid
+        }
+        
+        db.collection("users").document(uid).setData([
+            "name": usernameTxt.text,
+            "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
+            "questions": [],
+            ])
+        
+        
+        print("Firebase Successful")
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     /*
      // MARK: - Navigation
