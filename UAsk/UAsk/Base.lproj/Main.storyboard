@@ -55,7 +55,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pf8-vB-wOu">
-                                <rect key="frame" x="98" y="156" width="177" height="162"/>
+                                <rect key="frame" x="98" y="207" width="163" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ZH0-Py-AJo" id="zrq-D6-jpe"/>
