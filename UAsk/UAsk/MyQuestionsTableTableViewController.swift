@@ -8,13 +8,19 @@
 
 import UIKit
 
+struct cellDatas{
+    let cell : Int!
+    let text : String!
+    //  let image : UIImage!
+}
+
 class MyQuestionsTableTableViewController: UITableViewController {
         
-    var arrayOfCellData = [cellData]()
+    var arrayOfCellData = [cellDatas]()
     
     override func viewDidLoad() {
         
-        arrayOfCellData = [cellData(cell: 1, text: "My Will"),cellData(cell: 2, text: "My Oliv"),cellData(cell: 3, text: "My Meg")]
+        arrayOfCellData = [cellDatas(cell: 1, text: "My Will"),cellDatas(cell: 2, text: "My Oliv"),cellDatas(cell: 3, text: "My Meg")]
     }
     
     

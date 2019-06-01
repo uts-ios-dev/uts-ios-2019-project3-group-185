@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewQuestionsTableTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellLabelTest: UILabel!
