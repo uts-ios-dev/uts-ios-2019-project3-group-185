@@ -27,11 +27,10 @@ class ViewQuestionsTableViewController: UITableViewController {
         tableView.delegate = self
         loadData()
         
-
-//        arrayOfCellData = [cellData(cell: 1, text: "Will"),cellData(cell: 2, text: "Oliv"),cellData(cell: 3, text: "Meg")]
     }
     
     func loadData() {
+        
         db.collection("questions").getDocuments{(snapshot, error) in
             if error != nil {
                 print(error)
@@ -40,6 +39,18 @@ class ViewQuestionsTableViewController: UITableViewController {
                 for document in (snapshot?.documents)! {
                     if let titleTxt = document.data()["questionTxt"] as? String {
                         self.arrayOfCellData.append(cellData(text: titleTxt))
+                        
+                        if let userID = document.data()["userId"] as? String {
+                            self.db.collection("users").document(userID).getDocument{(snapshot, error) in
+                                if let document = snapshot {
+                                    let property = document.get("name")
+                                    print(property)
+                                }
+                                else {
+                                    print(error)
+                                }
+                            }
+                        }
                         
                     }
                 }
@@ -59,39 +70,15 @@ class ViewQuestionsTableViewController: UITableViewController {
         let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
        cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
         
-        
         print("Array is populated \(arrayOfCellData)")
+  
         
         return cell
-        
-        
-//        if arrayOfCellData[indexPath.row].cell == 1 {
-//            let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
-//
-//            cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
-//
-//            return cell
-//
-//        }
-//        else {
-//            let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
-//
-//            cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
-//
-//            return cell
-//        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-//        if arrayOfCellData[indexPath.row].cell == 1 {
-//            return 73
-//        }
-//        else {
-//            return 73
-//        }
-        
-        return 73
+        return 250
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
