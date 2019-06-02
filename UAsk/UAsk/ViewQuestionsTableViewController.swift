@@ -31,6 +31,7 @@ class ViewQuestionsTableViewController: UITableViewController {
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
@@ -135,7 +136,12 @@ class ViewQuestionsTableViewController: UITableViewController {
         
         cell.cellLabelContent.text = arrayOfData[indexPath.row].quesTxt
         cell.cellLabelTest.text = arrayOfData[indexPath.row].facTxt
-        
+        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        cell.cardView.layer.shadowColor = UIColor.black.cgColor
+        cell.cardView.layer.shadowOpacity = 0.3
+        cell.cardView.layer.shadowRadius = 4
+        cell.cardView.layer.cornerRadius = 20
+        cell.cardView.clipsToBounds = true
         return cell
     }
     
