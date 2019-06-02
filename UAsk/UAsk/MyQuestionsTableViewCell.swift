@@ -12,6 +12,7 @@ class MyQuestionsTableViewCell: UITableViewCell {
 
  
     @IBOutlet weak var myQuestionLabel: UILabel!
+    @IBOutlet weak var myQuestionsContent: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
