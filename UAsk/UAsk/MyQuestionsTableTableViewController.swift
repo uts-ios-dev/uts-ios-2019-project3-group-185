@@ -7,20 +7,38 @@
 //
 
 import UIKit
-
-struct cellDatas{
-    let cell : Int!
-    let text : String!
-    //  let image : UIImage!
-}
+import FirebaseFirestore
 
 class MyQuestionsTableTableViewController: UITableViewController {
         
-    var arrayOfCellData = [cellDatas]()
+    var arrayOfCellData = [cellData]()
+    var arrayOfTitle = [String]()
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        loadData()
         
-        arrayOfCellData = [cellDatas(cell: 1, text: "My Will"),cellDatas(cell: 2, text: "My Oliv"),cellDatas(cell: 3, text: "My Meg")]
+    }
+    
+    func loadData() {
+//        db.collection("questions").getDocuments{(snapshot, error) in
+//            if error != nil {
+//                print(error)
+//            }
+//            else {
+//                for document in (snapshot?.documents)! {
+//                    if let titleTxt = document.data()["faculty"] as? String {
+//                        self.arrayOfCellData.append(cellData(text: titleTxt))
+//
+//                    }
+//                }
+//            }
+//            self.tableView.reloadData()
+//        }
+        
     }
     
     
@@ -30,31 +48,18 @@ class MyQuestionsTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if arrayOfCellData[indexPath.row].cell == 1 {
-            let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
-            
-            cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
-            
-            return cell
-            
-        }
-        else {
-            let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
-            
-            cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
-            
-            return cell
-        }
+        let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
+//        cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
+        
+        
+        //print("Array is populated \(arrayOfCellData)")
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if arrayOfCellData[indexPath.row].cell == 1 {
-            return 73
-        }
-        else {
-            return 73
-        }
+        return 73
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -62,11 +67,11 @@ class MyQuestionsTableTableViewController: UITableViewController {
         let viewController : String
         switch indexPath.row {
         case 0: //For "one"
-            viewController = "MyAnswersViewController"
+            viewController = "AnswersViewController"
         case 1: //For "two"
             viewController = "LoginViewController"
         default: //For "three"
-            viewController = "MyAnswersViewController"
+            viewController = "AnswersViewController"
         }
         
         let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController)
