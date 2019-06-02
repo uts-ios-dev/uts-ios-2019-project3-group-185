@@ -357,6 +357,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="346" id="LBr-3Q-OJE"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="dPN-f0-krY" id="0zE-hF-2e6"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYo-v8-dx2">
                                 <rect key="frame" x="16" y="20" width="64" height="30"/>
@@ -406,6 +409,7 @@
                         <viewLayoutGuide key="safeArea" id="ChF-dr-Bes"/>
                     </view>
                     <connections>
+                        <outlet property="answerTableView" destination="9di-qB-Skz" id="JlV-bT-gtp"/>
                         <outlet property="myQuestionContent" destination="fd8-Un-5pQ" id="Phj-37-VK3"/>
                         <outlet property="myQuestionsName" destination="XMc-dp-qGJ" id="tQQ-dQ-VDH"/>
                     </connections>

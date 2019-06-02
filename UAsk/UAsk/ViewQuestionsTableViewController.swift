@@ -17,10 +17,6 @@ struct cellData{
     let docId: String!
 }
 
-struct cellText{
-    let text : String!
-}
-
 class ViewQuestionsTableViewController: UITableViewController {
     
     var arrayOfData: [cellData] = []
