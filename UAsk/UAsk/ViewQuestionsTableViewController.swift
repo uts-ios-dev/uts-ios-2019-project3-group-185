@@ -119,6 +119,9 @@ class ViewQuestionsTableViewController: UITableViewController {
         cell.cardView.layer.shadowRadius = 4
         cell.cardView.layer.cornerRadius = 20
         cell.cardView.clipsToBounds = true
+        cell.nameChip.layer.cornerRadius = 20
+        cell.nameChip.clipsToBounds = true
+        
         return cell
     }
     

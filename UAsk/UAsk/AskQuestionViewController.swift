@@ -105,7 +105,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
             "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
             "questionTxt": questionTxt.text,
             "userId": uid,
-            "username": username
+            "name": username
             ])
     }
     
