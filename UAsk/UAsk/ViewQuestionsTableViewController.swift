@@ -58,7 +58,6 @@ class ViewQuestionsTableViewController: UITableViewController {
                     {
                         self.arrayOfData.removeAll()
                         let data = document.data()
-                        let quesUser = data["userId"] as? String
                         
                         
 //                        self.db.collection("users").document(quesUser!).getDocument()
