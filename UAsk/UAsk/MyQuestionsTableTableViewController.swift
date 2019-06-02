@@ -21,6 +21,8 @@ class MyQuestionsTableTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        createArray()
+        
     }
     
     func createArray()
@@ -50,13 +52,13 @@ class MyQuestionsTableTableViewController: UITableViewController {
                         print(txt)
                         
                         tempTxt.append(txt)
-                        print("hello \(tempTxt)")
+                        print("myhello \(tempTxt)")
                         
                         
                     }
                     
                     self.arrayOfData = tempTxt
-                    print("hello \(self.arrayOfData)")
+                    print("myhelloarray \(self.arrayOfData)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
