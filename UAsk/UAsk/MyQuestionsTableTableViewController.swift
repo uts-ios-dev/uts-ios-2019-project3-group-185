@@ -24,20 +24,20 @@ class MyQuestionsTableTableViewController: UITableViewController {
     }
     
     func loadData() {
-        db.collection("questions").getDocuments{(snapshot, error) in
-            if error != nil {
-                print(error)
-            }
-            else {
-                for document in (snapshot?.documents)! {
-                    if let titleTxt = document.data()["faculty"] as? String {
-                        self.arrayOfCellData.append(cellData(text: titleTxt))
-                        
-                    }
-                }
-            }
-            self.tableView.reloadData()
-        }
+//        db.collection("questions").getDocuments{(snapshot, error) in
+//            if error != nil {
+//                print(error)
+//            }
+//            else {
+//                for document in (snapshot?.documents)! {
+//                    if let titleTxt = document.data()["faculty"] as? String {
+//                        self.arrayOfCellData.append(cellData(text: titleTxt))
+//
+//                    }
+//                }
+//            }
+//            self.tableView.reloadData()
+//        }
         
     }
     
@@ -48,8 +48,8 @@ class MyQuestionsTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
-        cell.cellLabelTest.text = arrayOfCellData[indexPath.row].text
+        let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
+//        cell.myQuestionLabel.text = arrayOfCellData[indexPath.row].text
         
         
         //print("Array is populated \(arrayOfCellData)")
