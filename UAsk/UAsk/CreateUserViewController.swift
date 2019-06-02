@@ -111,39 +111,41 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             return
         }
         
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error, authResult == nil {
                 // do stuff to handle
                 print("Firebase error")
+            } else {
+                print("Hello \(String(describing: Auth.auth().currentUser?.uid))")
+                let uid = Auth.auth().currentUser?.uid
+                
+                self.db.collection("users").document(uid!).setData([
+                    "name": self.usernameTxt.text,
+                    "faculty": self.facultyData[self.facultyPicker.selectedRow(inComponent: 0)],
+                    "questions": [],
+                    ])
+               
             }
         }
         
-        let docData: [String: Any] = [
-            "name": usernameTxt.text,
-            "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
-            "questions": [],
-        ]
+//        Auth.auth().signIn(withEmail: email,
+//                           password: password) { (user, error) in
+//                            if let error = error, user == nil {
+//                                print("Not athenticated")
+//                                return
+//                            }
+//        }
         
-        Auth.auth().signIn(withEmail: email,
-                           password: password) { (user, error) in
-                            if let error = error, user == nil {
-                                print("Not athenticated")
-                                return
-                            }
-        }
         
-        var uid = ""
         
-        let user = Auth.auth().currentUser
-        if let user = user {
-            uid = user.uid
-        }
-        
-        db.collection("users").document(uid).setData([
-            "name": usernameTxt.text,
-            "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
-            "questions": [],
-            ])
+//        let user = Auth.auth().currentUser
+//        if let user = user {
+//            uid = user.uid
+//            let email = user.email
+//        }
+      
         
         
         print("Firebase Successful")
@@ -151,6 +153,11 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        try! Auth.auth().signOut()
     }
     
     /*
@@ -162,5 +169,10 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
      // Pass the selected object to the new view controller.
      }
      */
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        try! Auth.auth().signOut()
+    }
     
 }

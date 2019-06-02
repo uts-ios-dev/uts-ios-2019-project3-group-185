@@ -23,6 +23,9 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     var facultyData = ["Faculty","Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
     
+    var uid = ""
+    var username = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +43,8 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // [END setup]
         db = Firestore.firestore()
         // Do any additional setup after loading the view.
+        
+        getUserData()
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -56,9 +61,9 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func submitQuestion(_ sender: Any) {
         if (checkFieldValues()) {
-            creatQuestionInFirebase()
+            addQuestionToDb()
             clearField()
-            successfulTxt.isHidden = false
+            showSuccessTxt()
         }
     }
     
@@ -75,23 +80,42 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
 
-    func creatQuestionInFirebase() {
-        var uid = ""
+    func getUserData() {
         let user = Auth.auth().currentUser
         if let user = user {
             uid = user.uid
         }
         
+        let docRef = db.collection("users").document(uid)
+        
+        docRef.getDocument { (document, error) in
+            if let data = document?.data(), document?.exists ?? false {
+                print(data["name"])
+                self.username = data["name"] as! String
+            } else {
+                print("Document does not exist")
+            }
+        }
+//        addQuestionToDb()
+//        clearField()
+    }
+    
+    func addQuestionToDb() {
         db.collection("questions").addDocument(data: [
             "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
             "questionTxt": questionTxt.text,
-            "userId": uid
+            "userId": uid,
+            "username": username
             ])
     }
     
     func clearField() {
         questionTxt.text.removeAll()
         facultyPicker.reloadAllComponents()
+    }
+    
+    func showSuccessTxt() {
+        successfulTxt.isHidden = false
     }
 
     /*

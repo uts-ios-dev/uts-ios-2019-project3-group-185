@@ -13,7 +13,7 @@ import FirebaseAuth
 struct cellData{
     let facTxt : String!
     let quesTxt : String!
-    //  let image : UIImage!
+//  let nameTxt : String!
 }
 
 struct cellText{
@@ -23,11 +23,6 @@ struct cellText{
 class ViewQuestionsTableViewController: UITableViewController {
     
     var arrayOfData: [cellData] = []
-    
-    var arrayOfCellData = [cellData]()
-    var arrayOfTitle = [cellData]()
-    var arrayOfNames = [cellText]()
-    let authentication = Auth.auth().currentUser?.uid
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -46,6 +41,8 @@ class ViewQuestionsTableViewController: UITableViewController {
     func createArray()
     {
         var tempTxt: [cellData] = []
+        var tempUser : String?
+       
         
         //Choosing collection
         db.collection("questions").getDocuments()
@@ -60,13 +57,32 @@ class ViewQuestionsTableViewController: UITableViewController {
                     for document in QuerySnapshot!.documents
                     {
                         self.arrayOfData.removeAll()
-                        
                         let data = document.data()
+                        let quesUser = data["userId"] as? String
                         
-                            
+                        
+//                        self.db.collection("users").document(quesUser!).getDocument()
+//                            {(QuerySnapshot, err) in
+//                                if err != nil
+//                                {
+//                                    print("Error getting documents: \(String(describing: err))");
+//                                }
+//                                else
+//                                {
+//                                    if let document = QuerySnapshot {
+//                                        tempUser = document.get("name") as? String
+//                                        print("wtf \(String(describing: tempUser))")
+//                                    }
+//                                    print("omg \(String(describing: self.tempName))")
+//                                    self.tempName = tempUser
+//                                }
+//                            }                  
                             let data1 = data["faculty"] as? String
                             let data2 = data["questionTxt"] as? String
+                        
                             
+                        
+                        
                             let txt = cellData(facTxt: data1!, quesTxt: data2!)
                             print(txt)
                             
@@ -87,49 +103,11 @@ class ViewQuestionsTableViewController: UITableViewController {
 
     
     
-    func loadData() {
-        
-        
-        
-//        db.collection("questions").getDocuments{(snapshot, error) in
-//            if error != nil {
-//                print(error)
-//            }
-//            else {
-//                for document in (snapshot?.documents)! {
-//                    if let titleTxt = document.data()["questionTxt"] as? String {
-//                        if let userID = document.data()["userId"] as? String {
-//                            self.db.collection("users").document(userID).getDocument{(snapshot, error) in
-//                                if let document = snapshot {
-//                                    let nameTxt = document.get("name")
-//                                    self.arrayOfNames.append(cellText(text: nameTxt as? String))
-//                                    print(self.arrayOfNames)
-//                                }
-//                                else {
-//                                    print(error)
-//                                }
-//
-//                                self.tableView.reloadData()
-//                            }
-//                        }
-//                        print(self.arrayOfNames)
-//                        self.arrayOfCellData.append(cellData(text: titleTxt))
-//
-//
-//
-//                    }
-//                }
-//            }
-//            self.tableView.reloadData()
-//        }
-        
-    }
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfData.count
     }
     
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
