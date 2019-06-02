@@ -166,8 +166,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-AS-9mN">
-                                <rect key="frame" x="89.5" y="318.5" width="196.5" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Answer Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-AS-9mN">
+                                <rect key="frame" x="89" y="56" width="196.5" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.0" green="0.4717491103" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -180,6 +180,13 @@
                                     <action selector="submitButton:" destination="SW8-ZX-QhO" eventType="touchUpInside" id="1Iv-TB-pdV"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sYY-vL-Djy">
+                                <rect key="frame" x="67" y="208" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -191,6 +198,7 @@
                         <viewLayoutGuide key="safeArea" id="Lkp-iP-gFk"/>
                     </view>
                     <connections>
+                        <outlet property="answerTxt" destination="sYY-vL-Djy" id="ikZ-eV-DhP"/>
                         <outlet property="hello" destination="6JE-AS-9mN" id="yZh-Vo-gGZ"/>
                     </connections>
                 </viewController>
@@ -422,7 +430,7 @@
     <resources>
         <image name="Background" width="375" height="667"/>
         <image name="Background 2" width="375" height="667"/>
-        <image name="Logo1" width="200" height="200"/>
-        <image name="icons8-back-30" width="30" height="30"/>
+        <image name="Logo1" width="150" height="150"/>
+        <image name="icons8-back-30" width="154.28572082519531" height="154.28572082519531"/>
     </resources>
 </document>
