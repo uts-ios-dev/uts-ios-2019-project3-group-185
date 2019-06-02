@@ -26,6 +26,8 @@
 		B232CFA9229BC6B400B92759 /* ViewQuestionsTableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B232CFA7229BC6B400B92759 /* ViewQuestionsTableTableViewCell.xib */; };
 		B232CFB0229BD41700B92759 /* ViewQuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B232CFAE229BD41700B92759 /* ViewQuestionsTableViewController.swift */; };
 		B232CFB1229BD41700B92759 /* ViewQuestionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B232CFAF229BD41700B92759 /* ViewQuestionsTableViewController.xib */; };
+		B232DD5E22A464A30029F2A2 /* MyAnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B232DD5C22A464A30029F2A2 /* MyAnswersTableViewCell.swift */; };
+		B232DD5F22A464A30029F2A2 /* MyAnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B232DD5D22A464A30029F2A2 /* MyAnswersTableViewCell.xib */; };
 		B236C113229D870C0055E6CA /* MyAnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B236C112229D870C0055E6CA /* MyAnswersViewController.swift */; };
 		B23E6642229D779D0008677B /* AskQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23E6640229D779D0008677B /* AskQuestionViewController.swift */; };
 		B23E6643229D779D0008677B /* AskQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B23E6641229D779D0008677B /* AskQuestionViewController.xib */; };
@@ -80,6 +82,8 @@
 		B232CFA7229BC6B400B92759 /* ViewQuestionsTableTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewQuestionsTableTableViewCell.xib; sourceTree = "<group>"; };
 		B232CFAE229BD41700B92759 /* ViewQuestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewQuestionsTableViewController.swift; sourceTree = "<group>"; };
 		B232CFAF229BD41700B92759 /* ViewQuestionsTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewQuestionsTableViewController.xib; sourceTree = "<group>"; };
+		B232DD5C22A464A30029F2A2 /* MyAnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnswersTableViewCell.swift; sourceTree = "<group>"; };
+		B232DD5D22A464A30029F2A2 /* MyAnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAnswersTableViewCell.xib; sourceTree = "<group>"; };
 		B236C112229D870C0055E6CA /* MyAnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnswersViewController.swift; sourceTree = "<group>"; };
 		B23E6640229D779D0008677B /* AskQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskQuestionViewController.swift; sourceTree = "<group>"; };
 		B23E6641229D779D0008677B /* AskQuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskQuestionViewController.xib; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				B224CF8A22954C530054D769 /* ScrollViewController.swift */,
 				B230276122957DB4003390E7 /* AnswerViewController.swift */,
 				B236C112229D870C0055E6CA /* MyAnswersViewController.swift */,
+				B232DD5C22A464A30029F2A2 /* MyAnswersTableViewCell.swift */,
+				B232DD5D22A464A30029F2A2 /* MyAnswersTableViewCell.xib */,
 				448CA2162294F94400242C1A /* Main.storyboard */,
 				B23E6640229D779D0008677B /* AskQuestionViewController.swift */,
 				B23E6641229D779D0008677B /* AskQuestionViewController.xib */,
@@ -321,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2EB28EC229D80FC009D6742 /* MyQuestionsTableTableViewController.xib in Resources */,
+				B232DD5F22A464A30029F2A2 /* MyAnswersTableViewCell.xib in Resources */,
 				B23E6643229D779D0008677B /* AskQuestionViewController.xib in Resources */,
 				B2EB28F0229D824C009D6742 /* MyQuestionsTableViewCell.xib in Resources */,
 				448CA21D2294F94800242C1A /* LaunchScreen.storyboard in Resources */,
@@ -448,6 +455,7 @@
 				B2EB28EB229D80FC009D6742 /* MyQuestionsTableTableViewController.swift in Sources */,
 				B2EB28EF229D824C009D6742 /* MyQuestionsTableViewCell.swift in Sources */,
 				448CA2132294F94400242C1A /* AppDelegate.swift in Sources */,
+				B232DD5E22A464A30029F2A2 /* MyAnswersTableViewCell.swift in Sources */,
 				B232CFB0229BD41700B92759 /* ViewQuestionsTableViewController.swift in Sources */,
 				B232CFA8229BC6B400B92759 /* ViewQuestionsTableTableViewCell.swift in Sources */,
 				B236C113229D870C0055E6CA /* MyAnswersViewController.swift in Sources */,
