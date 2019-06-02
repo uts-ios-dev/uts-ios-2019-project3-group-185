@@ -44,11 +44,14 @@ class MyQuestionsTableTableViewController: UITableViewController {
                         self.arrayOfData.removeAll()
                         
                         let data = document.data()
+                        let docId = document.documentID
     
                         let data1 = data["faculty"] as? String
                         let data2 = data["questionTxt"] as? String
+                        let data3 = data["name"]as? String
+                        let data4 = docId
                         
-                        let txt = cellData(facTxt: data1!, quesTxt: data2!)
+                        let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
                         print(txt)
                         
                         tempTxt.append(txt)
@@ -74,6 +77,7 @@ class MyQuestionsTableTableViewController: UITableViewController {
         
         let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
        
+        cell.selectionStyle = .none
         cell.myQuestionsContent.text = arrayOfData[indexPath.row].quesTxt
         cell.myQuestionLabel.text = arrayOfData[indexPath.row].facTxt
         
@@ -89,17 +93,20 @@ class MyQuestionsTableTableViewController: UITableViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController : String
         switch indexPath.row {
-        case 0: //For "one"
-            viewController = "AnswersViewController"
-        case 1: //For "two"
-            viewController = "LoginViewController"
-        default: //For "three"
-            viewController = "AnswersViewController"
+            
+        default:
+            viewController = "MyAnswersViewController"
         }
         
-        let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController)
+        if let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? MyAnswersViewController {
+            
+            privateAnswersViewController.uId = arrayOfData[indexPath.row].docId
+            
+            self.present(privateAnswersViewController, animated:true, completion: nil)
+            
+        }
         
-        self.present(privateAnswersViewController, animated:true, completion: nil)
+       
     }
     
 }
