@@ -20,8 +20,6 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return facultyData.count
     }
     
-    
-    
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
 
