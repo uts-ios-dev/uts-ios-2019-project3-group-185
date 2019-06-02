@@ -56,6 +56,8 @@ class LoginViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             // Handle authenticated state
         }
+        
+        print(Auth.auth().currentUser?.uid)
     }
     
     func signIn() -> Bool {
