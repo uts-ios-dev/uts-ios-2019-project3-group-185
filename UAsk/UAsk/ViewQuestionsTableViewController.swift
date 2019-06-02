@@ -13,7 +13,8 @@ import FirebaseAuth
 struct cellData{
     let facTxt : String!
     let quesTxt : String!
-//  let nameTxt : String!
+    let nameTxt : String!
+    let docId: String!
 }
 
 struct cellText{
@@ -41,7 +42,6 @@ class ViewQuestionsTableViewController: UITableViewController {
     func createArray()
     {
         var tempTxt: [cellData] = []
-        var tempUser : String?
        
         
         //Choosing collection
@@ -58,31 +58,15 @@ class ViewQuestionsTableViewController: UITableViewController {
                     {
                         self.arrayOfData.removeAll()
                         let data = document.data()
+                        let docId = document.documentID
                         
-                        
-//                        self.db.collection("users").document(quesUser!).getDocument()
-//                            {(QuerySnapshot, err) in
-//                                if err != nil
-//                                {
-//                                    print("Error getting documents: \(String(describing: err))");
-//                                }
-//                                else
-//                                {
-//                                    if let document = QuerySnapshot {
-//                                        tempUser = document.get("name") as? String
-//                                        print("wtf \(String(describing: tempUser))")
-//                                    }
-//                                    print("omg \(String(describing: self.tempName))")
-//                                    self.tempName = tempUser
-//                                }
-//                            }                  
                             let data1 = data["faculty"] as? String
                             let data2 = data["questionTxt"] as? String
+                            let data3 = data["name"]as? String
+                            let data4 = docId
                         
-                            
                         
-                        
-                            let txt = cellData(facTxt: data1!, quesTxt: data2!)
+                        let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
                             print(txt)
                             
                             tempTxt.append(txt)
@@ -111,8 +95,36 @@ class ViewQuestionsTableViewController: UITableViewController {
         
         let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
         
+        cell.selectionStyle = .none
+        
         cell.cellLabelContent.text = arrayOfData[indexPath.row].quesTxt
-        cell.cellLabelTest.text = arrayOfData[indexPath.row].facTxt
+        cell.cellLabelTest.text = arrayOfData[indexPath.row].nameTxt
+        
+        if (arrayOfData[indexPath.row].facTxt == "Engineering and IT") {
+            cell.cardView.backgroundColor = UIColor.red
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Arts and Social Sciences") {
+            cell.cardView.backgroundColor = UIColor.orange
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Design, Architecture and Building") {
+            cell.cardView.backgroundColor = UIColor.brown
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Law") {
+            cell.cardView.backgroundColor = UIColor.purple
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Business") {
+            cell.cardView.backgroundColor = UIColor.blue
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Science") {
+            cell.cardView.backgroundColor = UIColor.yellow
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Health") {
+            cell.cardView.backgroundColor = UIColor.green
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Trans-Disciplinary Innovation") {
+            cell.cardView.backgroundColor = UIColor.lightGray
+        }
+
         cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 5)
         cell.cardView.layer.shadowColor = UIColor.black.cgColor
         cell.cardView.layer.shadowOpacity = 0.3
@@ -134,11 +146,7 @@ class ViewQuestionsTableViewController: UITableViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController : String
         switch indexPath.row {
-        case 0: //For "one"
-            viewController = "AnswersViewController"
-        case 1: //For "two"
-            viewController = "LoginViewController"
-        default: //For "three"
+        default:
             viewController = "AnswersViewController"
         }
         
