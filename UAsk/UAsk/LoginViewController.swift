@@ -32,6 +32,21 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func checkFieldValues() -> Bool {
+        guard let email = emailEditTxt.text, !email.isEmpty else {
+            loginErrorTxt.text = "Please input email. "
+            loginErrorTxt.isHidden = false
+            return false
+        }
+        
+        guard let password = passEditTxt.text, !password.isEmpty else {
+            loginErrorTxt.text = "Please input password."
+            loginErrorTxt.isHidden = false
+            return false
+        }
+        return true
+    }
+    
     func signIn() {
         guard
             let email = emailEditTxt.text,
@@ -45,6 +60,7 @@ class LoginViewController: UIViewController {
                            password: password) { (user, error) in
                             if let _ = error, user == nil {
                                 print("Not athenticated")
+                                self.loginErrorTxt.text = "Invalid email and/or password."
                                 self.loginErrorTxt.isHidden = false
                                 return
                             }
