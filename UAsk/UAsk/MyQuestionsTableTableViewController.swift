@@ -80,6 +80,8 @@ class MyQuestionsTableTableViewController: UITableViewController {
         cell.selectionStyle = .none
         cell.myQuestionsContent.text = arrayOfData[indexPath.row].quesTxt
         cell.myQuestionLabel.text = arrayOfData[indexPath.row].facTxt
+        cell.cellBackground.layer.cornerRadius = 20
+        cell.cellBackground.clipsToBounds = true
         
         return cell
     }
