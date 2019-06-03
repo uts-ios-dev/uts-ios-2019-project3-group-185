@@ -146,9 +146,15 @@ class ViewQuestionsTableViewController: UITableViewController {
             viewController = "AnswersViewController"
         }
         
-        let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController)
+       if let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? AnswersViewController {
+            privateAnswersViewController.questionUid = arrayOfData[indexPath.row].docId
         
-        self.present(privateAnswersViewController, animated:true, completion: nil)
+            self.present(privateAnswersViewController, animated:true, completion: nil)
+        }
+        
+        
+        
+//        self.present(privateAnswersViewController, animated:true, completion: nil)
     }
     
 }
