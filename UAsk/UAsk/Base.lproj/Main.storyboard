@@ -209,29 +209,49 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please add an answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZ1-yx-3MZ">
+                                <rect key="frame" x="17" y="292" width="211" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.85467560279999999" green="0.060390027979999997" blue="0.027155167760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c02-bp-b0U">
+                                <rect key="frame" x="17" y="20" width="44" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="SW8-ZX-QhO" eventType="touchUpInside" id="lRT-9T-wOB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="U9z-Rd-8ZL" secondAttribute="bottom" constant="20" symbolic="YES" id="6qf-b2-CAd"/>
+                            <constraint firstItem="c02-bp-b0U" firstAttribute="top" secondItem="Lkp-iP-gFk" secondAttribute="top" id="7KZ-xh-Ln2"/>
                             <constraint firstItem="Y7d-UT-A0F" firstAttribute="centerX" secondItem="U9z-Rd-8ZL" secondAttribute="centerX" id="9uU-cu-axc"/>
                             <constraint firstItem="Y7d-UT-A0F" firstAttribute="top" secondItem="6JE-AS-9mN" secondAttribute="bottom" constant="8" symbolic="YES" id="B9M-gK-mcX"/>
                             <constraint firstItem="6JE-AS-9mN" firstAttribute="top" secondItem="Lkp-iP-gFk" secondAttribute="top" constant="36" id="Ebx-j6-O0r"/>
                             <constraint firstItem="sYY-vL-Djy" firstAttribute="top" secondItem="Y7d-UT-A0F" secondAttribute="bottom" constant="68" id="FMB-yy-KKV"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="bottom" secondItem="sYY-vL-Djy" secondAttribute="bottom" id="KLz-NJ-hSz"/>
+                            <constraint firstItem="Lkp-iP-gFk" firstAttribute="trailing" secondItem="PZ1-yx-3MZ" secondAttribute="trailing" constant="147" id="PII-qt-lRW"/>
                             <constraint firstItem="6JE-AS-9mN" firstAttribute="centerX" secondItem="Y7d-UT-A0F" secondAttribute="centerX" id="VBa-3N-WfJ"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="leading" secondItem="shE-4I-32T" secondAttribute="leading" id="Vx7-Bu-Ooq"/>
                             <constraint firstItem="sYY-vL-Djy" firstAttribute="centerX" secondItem="U9z-Rd-8ZL" secondAttribute="centerX" id="a9E-tL-CdQ"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="leading" secondItem="sYY-vL-Djy" secondAttribute="leading" id="l3y-a2-cNl"/>
+                            <constraint firstItem="c02-bp-b0U" firstAttribute="leading" secondItem="Y7d-UT-A0F" secondAttribute="leading" id="l8o-7P-L4y"/>
                             <constraint firstItem="Y7d-UT-A0F" firstAttribute="leading" secondItem="Lkp-iP-gFk" secondAttribute="leading" constant="17" id="lxi-xs-KCE"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="bottom" secondItem="Lkp-iP-gFk" secondAttribute="bottom" id="nwz-z2-1mi"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="top" secondItem="shE-4I-32T" secondAttribute="top" id="pA0-2V-34u"/>
                             <constraint firstItem="U9z-Rd-8ZL" firstAttribute="leading" secondItem="Lkp-iP-gFk" secondAttribute="leading" constant="136" id="qSz-kc-Pr5"/>
+                            <constraint firstItem="sYY-vL-Djy" firstAttribute="top" secondItem="PZ1-yx-3MZ" secondAttribute="bottom" constant="8" symbolic="YES" id="r6s-aX-GLy"/>
+                            <constraint firstItem="c02-bp-b0U" firstAttribute="leading" secondItem="PZ1-yx-3MZ" secondAttribute="leading" id="vhx-LI-TOS"/>
                             <constraint firstItem="ERO-ja-bP4" firstAttribute="trailing" secondItem="sYY-vL-Djy" secondAttribute="trailing" id="wcL-d2-BNJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lkp-iP-gFk"/>
                     </view>
                     <connections>
                         <outlet property="answerTxt" destination="sYY-vL-Djy" id="ikZ-eV-DhP"/>
+                        <outlet property="errorTxt" destination="PZ1-yx-3MZ" id="9he-Ro-ckt"/>
                         <outlet property="hello" destination="6JE-AS-9mN" id="yZh-Vo-gGZ"/>
                         <outlet property="questionTxtLabel" destination="Y7d-UT-A0F" id="0r3-CH-waz"/>
                     </connections>
@@ -351,6 +371,7 @@
                     </view>
                     <connections>
                         <outlet property="emailEditTxt" destination="pqi-LD-N6q" id="Y2U-qz-Nbb"/>
+                        <outlet property="loginErrorTxt" destination="oMd-iU-azh" id="0Hz-cU-JpV"/>
                         <outlet property="passEditTxt" destination="sXn-PO-cyW" id="4fi-Ib-PlT"/>
                         <segue destination="Yu6-RB-eTE" kind="showDetail" identifier="QuestionTransition" id="D0w-gj-qUh"/>
                         <segue destination="cTb-9R-MVB" kind="showDetail" identifier="CreateAccountTransition" id="dSt-Dk-2BB"/>

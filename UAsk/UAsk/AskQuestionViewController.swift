@@ -46,6 +46,24 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         getUserData()
     }
 
+    @IBAction func signOutBtn(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("Auth error")
+        }
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController : String
+            viewController = "LoginViewController"
+            
+            
+            if let loginViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? LoginViewController {
+                self.present(loginViewController, animated:true, completion: nil)
+            }
+    }
+        
+
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

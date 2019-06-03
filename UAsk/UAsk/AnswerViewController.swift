@@ -19,14 +19,17 @@ class AnswersViewController: UIViewController {
     var username = ""
     var questionUid: String?
     
+    @IBOutlet weak var errorTxt: UILabel!
     @IBOutlet weak var answerTxt: UITextView!
     @IBAction func submitButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
         if (checkFieldValues()) {
             addAnswerToDb()
+            self.dismiss(animated: true, completion: nil)
         }
-        
-        
+    }
+    
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func addAnswerToDb() {
@@ -65,9 +68,9 @@ class AnswersViewController: UIViewController {
     
     func checkFieldValues() -> Bool{
         guard let answer = answerTxt.text, !answer.isEmpty else {
+            errorTxt.isHidden = false
             return false
         }
-        
         return true
     }
     
@@ -112,16 +115,4 @@ class AnswersViewController: UIViewController {
         //        addQuestionToDb()
         //        clearField()
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
