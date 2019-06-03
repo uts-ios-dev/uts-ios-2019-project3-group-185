@@ -10,6 +10,10 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+struct cellAnswerData {
+    let answerTxt: String?
+}
+
 class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var myQuestionContent: UILabel!
@@ -19,7 +23,7 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
         self.dismiss(animated: true, completion: nil)
     }
     
-    var arrayOfData: [cellData] = []
+    var arrayOfData: [cellAnswerData] = []
     let db = Firestore.firestore()
     var uId: String?
     let tableView = UITableView()
@@ -36,7 +40,7 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
         
         cell.selectionStyle = .none
         
-        cell.answerTestLabel.text = arrayOfData[indexPath.row].nameTxt
+        cell.answerTestLabel.text = arrayOfData[indexPath.row].answerTxt
         //cell.cellLabelTest.text = arrayOfData[indexPath.row].nameTxt
         
         return cell
@@ -60,14 +64,26 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
         self.present(privateAnswersViewController, animated:true, completion: nil)
     }
    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+     
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        
         createArray()
         loadData()
-        print("why \(uId)")
-        // Do any additional setup after loading the view.
+        tableView.reloadData()
+        tableView.dataSource = self
+        tableView.delegate = self
+     
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        //tableView.reloadData()
     }
     
    
@@ -101,11 +117,11 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func createArray()
     {
-        var tempTxt: [cellData] = []
+        var tempTxt: [cellAnswerData] = []
         
         
         //Choosing collection
-        db.collection("questions").getDocuments()
+        db.collection("questions").document(uId!).collection("answers").getDocuments
             { (QuerySnapshot, err) in
                 if err != nil
                 {
@@ -117,34 +133,29 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
                     for document in QuerySnapshot!.documents
                     {
                         self.arrayOfData.removeAll()
+                        print("hog \(self.arrayOfData)")
                         let data = document.data()
-                        let docId = document.documentID
                         
-                        let data1 = data["faculty"] as? String
-                        let data2 = data["questionTxt"] as? String
-                        let data3 = data["name"]as? String
-                        let data4 = docId
+                        let data1 = data["answerTxt"] as? String
                         
                         
-                        let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
+                        
+                        let txt = cellAnswerData(answerTxt: data1!)
                         print(txt)
                         
                         tempTxt.append(txt)
-                        print("hello \(tempTxt)")
+                        print("LoL \(tempTxt)")
                         
                         
                     }
                     
                     self.arrayOfData = tempTxt
-                    print("hello \(self.arrayOfData)")
+                    print("LoL \(self.arrayOfData)")
+                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 }
         }
     }
-
-    
-    
-    
 }
