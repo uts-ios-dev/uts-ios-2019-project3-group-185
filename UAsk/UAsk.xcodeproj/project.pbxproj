@@ -11,6 +11,7 @@
 		44443A422297A32400CE8E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44443A412297A32400CE8E5F /* GoogleService-Info.plist */; };
 		44443A432297A32400CE8E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44443A412297A32400CE8E5F /* GoogleService-Info.plist */; };
 		44443A442297A32400CE8E5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44443A412297A32400CE8E5F /* GoogleService-Info.plist */; };
+		4488C00222A4A58B0014F82D /* UAskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488C00122A4A58B0014F82D /* UAskError.swift */; };
 		448CA2132294F94400242C1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CA2122294F94400242C1A /* AppDelegate.swift */; };
 		448CA2152294F94400242C1A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CA2142294F94400242C1A /* LoginViewController.swift */; };
 		448CA2182294F94400242C1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 448CA2162294F94400242C1A /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		06025616AA2CA1F495EE82EA /* Pods-UAskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UAskTests.debug.xcconfig"; path = "Target Support Files/Pods-UAskTests/Pods-UAskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		08F12CC327356FE67EA8B368 /* Pods_UAskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UAskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44443A412297A32400CE8E5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4488C00122A4A58B0014F82D /* UAskError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAskError.swift; sourceTree = "<group>"; };
 		448CA20F2294F94400242C1A /* UAsk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UAsk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		448CA2122294F94400242C1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		448CA2142294F94400242C1A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				B2EB28ED229D824C009D6742 /* MyQuestionsTableViewCell.swift */,
 				B2EB28EE229D824C009D6742 /* MyQuestionsTableViewCell.xib */,
 				448CA2192294F94800242C1A /* Assets.xcassets */,
+				4488C00122A4A58B0014F82D /* UAskError.swift */,
 				44443A412297A32400CE8E5F /* GoogleService-Info.plist */,
 				448CA21B2294F94800242C1A /* LaunchScreen.storyboard */,
 				448CA21E2294F94800242C1A /* Info.plist */,
@@ -475,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4488C00222A4A58B0014F82D /* UAskError.swift in Sources */,
 				448CA2332294F94800242C1A /* UAskUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

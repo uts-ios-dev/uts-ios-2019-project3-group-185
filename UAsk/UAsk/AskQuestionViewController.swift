@@ -16,6 +16,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
     
+    @IBOutlet weak var errorTxt: UILabel!
     @IBOutlet weak var questionTxt: UITextView!
     @IBOutlet weak var facultyPicker: UIPickerView!
     @IBOutlet weak var submitQButton: UIButton!
@@ -35,16 +36,12 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.facultyPicker.delegate = self
         
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // Handle authenticated state
         }
         
-        // [START setup]
+        // Firestore setup
         let settings = FirestoreSettings()
-        
         Firestore.firestore().settings = settings
-        // [END setup]
         db = Firestore.firestore()
-        // Do any additional setup after loading the view.
         
         getUserData()
     }
@@ -73,12 +70,17 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let selectedValue = facultyData[facultyPicker.selectedRow(inComponent: 0)]
         
         guard let question = questionTxt.text, !question.isEmpty else {
+            errorTxt.isHidden = false
             return false
         }
         
         if (selectedValue == "Faculty") {
+            errorTxt.text = "Please choose a faculty for the question"
+            errorTxt.isHidden = false
             return false
         }
+        
+        errorTxt.isHidden = true
         return true
     }
 
@@ -92,14 +94,12 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         docRef.getDocument { (document, error) in
             if let data = document?.data(), document?.exists ?? false {
-                print(data["name"])
+                print(data["name"]!)
                 self.username = data["name"] as! String
             } else {
                 print("Document does not exist")
             }
         }
-//        addQuestionToDb()
-//        clearField()
     }
     
     func addQuestionToDb() {
@@ -119,15 +119,4 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     func showSuccessTxt() {
         successfulTxt.isHidden = false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
