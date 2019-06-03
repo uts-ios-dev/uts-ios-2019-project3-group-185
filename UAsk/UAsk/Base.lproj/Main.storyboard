@@ -253,6 +253,7 @@
                         <outlet property="answerTxt" destination="sYY-vL-Djy" id="ikZ-eV-DhP"/>
                         <outlet property="errorTxt" destination="PZ1-yx-3MZ" id="9he-Ro-ckt"/>
                         <outlet property="hello" destination="6JE-AS-9mN" id="yZh-Vo-gGZ"/>
+                        <outlet property="questionTxtLabel" destination="Y7d-UT-A0F" id="0r3-CH-waz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cct-MU-S5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -491,8 +492,8 @@
     <resources>
         <image name="Background" width="375" height="667"/>
         <image name="Background 2" width="375" height="667"/>
-        <image name="Logo1" width="150" height="150"/>
+        <image name="Logo1" width="200" height="200"/>
         <image name="b3" width="375" height="668"/>
-        <image name="icons8-back-30" width="154.28572082519531" height="154.28572082519531"/>
+        <image name="icons8-back-30" width="30" height="30"/>
     </resources>
 </document>
