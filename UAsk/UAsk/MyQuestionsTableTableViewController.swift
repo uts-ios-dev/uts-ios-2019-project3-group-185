@@ -83,6 +83,31 @@ class MyQuestionsTableTableViewController: UITableViewController {
         cell.cellBackground.layer.cornerRadius = 20
         cell.cellBackground.clipsToBounds = true
         
+        if (arrayOfData[indexPath.row].facTxt == "Engineering and IT") {
+            cell.cellBackground.backgroundColor = UIColor.red
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Arts and Social Sciences") {
+            cell.cellBackground.backgroundColor = UIColor.orange
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Design, Architecture and Building") {
+            cell.cellBackground.backgroundColor = UIColor.brown
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Law") {
+            cell.cellBackground.backgroundColor = UIColor.purple
+        }
+        if (arrayOfData[indexPath.row].facTxt == "Business") {
+            cell.cellBackground.backgroundColor = UIColor.blue
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Science") {
+            cell.cellBackground.backgroundColor = UIColor.magenta
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Health") {
+            cell.cellBackground.backgroundColor = UIColor.green
+        }
+        if (arrayOfData[indexPath.row].facTxt ==  "Trans-Disciplinary Innovation") {
+            cell.cellBackground.backgroundColor = UIColor.lightGray
+        }
+        
         return cell
     }
     
