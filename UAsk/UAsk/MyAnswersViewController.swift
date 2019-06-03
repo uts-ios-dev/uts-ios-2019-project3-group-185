@@ -44,7 +44,7 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 250
+        return 78
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -28,7 +28,9 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        questionTxt.layer.cornerRadius = 15
+        questionTxt.clipsToBounds = true
+        
         self.facultyPicker.dataSource = self
         self.facultyPicker.delegate = self
         
