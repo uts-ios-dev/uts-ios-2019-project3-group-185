@@ -55,15 +55,12 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController : String
             viewController = "LoginViewController"
-            
-            
+        
             if let loginViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? LoginViewController {
                 self.present(loginViewController, animated:true, completion: nil)
             }
     }
         
-
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

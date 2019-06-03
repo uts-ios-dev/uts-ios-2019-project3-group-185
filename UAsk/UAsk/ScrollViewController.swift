@@ -11,7 +11,6 @@ import FirebaseAuth
 
 class ScrollViewController: UIViewController {
     
-    
     @IBOutlet weak var fragment: UIScrollView!
     
     var handle: AuthStateDidChangeListenerHandle?
@@ -19,11 +18,11 @@ class ScrollViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        var viewQuestionsTableViewController : ViewQuestionsTableViewController = ViewQuestionsTableViewController(nibName: "ViewQuestionsTableViewController", bundle: nil)
+        let viewQuestionsTableViewController : ViewQuestionsTableViewController = ViewQuestionsTableViewController(nibName: "ViewQuestionsTableViewController", bundle: nil)
         
-        var myQuestionsTableTableViewController : MyQuestionsTableTableViewController = MyQuestionsTableTableViewController(nibName: "MyQuestionsTableTableViewController", bundle: nil)
+        let myQuestionsTableTableViewController : MyQuestionsTableTableViewController = MyQuestionsTableTableViewController(nibName: "MyQuestionsTableTableViewController", bundle: nil)
         
-        var askQuestionViewController : AskQuestionViewController = AskQuestionViewController(nibName: "AskQuestionViewController", bundle: nil)
+        let askQuestionViewController : AskQuestionViewController = AskQuestionViewController(nibName: "AskQuestionViewController", bundle: nil)
         
         self.addChild(askQuestionViewController)
         self.fragment.addSubview(askQuestionViewController.view)
@@ -46,13 +45,10 @@ class ScrollViewController: UIViewController {
         myQuestionsTableTableViewController.view.frame = myQuestionsTableTableViewControllerFragment
         
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // Handle stuff
         }
         
         self.fragment.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.size.height)
-        
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         do {

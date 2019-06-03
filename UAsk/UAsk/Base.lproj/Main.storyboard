@@ -437,7 +437,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="JmE-9u-A6b"/>
                                 </constraints>
-                                <state key="normal" title="Submit">
+                                <state key="normal" title="Back">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -492,8 +492,8 @@
     <resources>
         <image name="Background" width="375" height="667"/>
         <image name="Background 2" width="375" height="667"/>
-        <image name="Logo1" width="200" height="200"/>
+        <image name="Logo1" width="150" height="150"/>
         <image name="b3" width="375" height="668"/>
-        <image name="icons8-back-30" width="30" height="30"/>
+        <image name="icons8-back-30" width="154.28572082519531" height="154.28572082519531"/>
     </resources>
 </document>

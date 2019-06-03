@@ -21,6 +21,8 @@ class AnswersViewController: UIViewController {
     
     @IBOutlet weak var errorTxt: UILabel!
     @IBOutlet weak var answerTxt: UITextView!
+    @IBOutlet weak var hello: UILabel!
+    
     @IBAction func submitButton(_ sender: Any) {
         if (checkFieldValues()) {
             addAnswerToDb()
@@ -51,19 +53,12 @@ class AnswersViewController: UIViewController {
                 }
                 else
                 {
-                    //For-loop
-                    
                     let document = QuerySnapshot
                     let data = document!.data()
-                    
                     let data2 = data!["questionTxt"] as? String
-                    
-                    
-                    
                     self.questionTxtLabel.text = data2
-                    
                 }
-        }
+            }
     }
     
     func checkFieldValues() -> Bool{
@@ -74,24 +69,17 @@ class AnswersViewController: UIViewController {
         return true
     }
     
-    @IBOutlet weak var hello: UILabel!
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // Handle authenticated state
         }
         
         setData()   
         
-        // [START setup]
+        // Set up firestore
         let settings = FirestoreSettings()
-        
         Firestore.firestore().settings = settings
-        // [END setup]
         db = Firestore.firestore()
-        // Do any additional setup after loading the view.
         
         getUserData()
     }
@@ -106,13 +94,11 @@ class AnswersViewController: UIViewController {
         
         docRef.getDocument { (document, error) in
             if let data = document?.data(), document?.exists ?? false {
-                print(data["name"])
+                print(data["name"]!)
                 self.username = data["name"] as! String
             } else {
                 print("Document does not exist")
             }
         }
-        //        addQuestionToDb()
-        //        clearField()
     }
 }

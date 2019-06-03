@@ -20,27 +20,20 @@ class MyQuestionsTableTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
         createArray()
-        
     }
     
     func createArray()
     {
         var tempTxt: [cellData] = []
-        
         //Choosing collection
         db.collection("questions").whereField("userId", isEqualTo: currentUID!).getDocuments()
             { (QuerySnapshot, err) in
-                if err != nil
-                {
+                if err != nil {
                     print("Error getting documents: \(String(describing: err))");
                 }
-                else
-                {
-                    //For-loop
-                    for document in QuerySnapshot!.documents
-                    {
+                else {
+                    for document in QuerySnapshot!.documents {
                         self.arrayOfData.removeAll()
                         
                         let data = document.data()
@@ -56,14 +49,11 @@ class MyQuestionsTableTableViewController: UITableViewController {
                         
                         tempTxt.append(txt)
                         print("myhello \(tempTxt)")
-                        
-                        
                     }
-                    
                     self.arrayOfData = tempTxt
                     print("myhelloarray \(self.arrayOfData)")
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                    self.tableView.reloadData()
                     }
                 }
         }
@@ -87,7 +77,6 @@ class MyQuestionsTableTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 250
     }
     
@@ -101,14 +90,8 @@ class MyQuestionsTableTableViewController: UITableViewController {
         }
         
         if let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? MyAnswersViewController {
-            
             privateAnswersViewController.uId = arrayOfData[indexPath.row].docId
-            
             self.present(privateAnswersViewController, animated:true, completion: nil)
-            
         }
-        
-       
-    }
-    
+    }    
 }

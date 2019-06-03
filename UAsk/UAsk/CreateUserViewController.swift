@@ -127,8 +127,6 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             return
         }
         
-        
-        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let _ = error, authResult == nil {
                 self.errorTxt.text = "An error occured, please try again later."
@@ -140,8 +138,7 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
                     "name": self.usernameTxt.text!,
                     "faculty": self.facultyData[self.facultyPicker.selectedRow(inComponent: 0)],
                     "questions": [],
-                    ])
-               
+                ])
             }
         }
         print("Firebase Successful")
