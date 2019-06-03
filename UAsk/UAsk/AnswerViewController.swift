@@ -31,7 +31,8 @@ class AnswersViewController: UIViewController {
     func addAnswerToDb() {
         db.collection("questions").document(questionUid ?? "nil").collection("answers").addDocument( data: [
             "answerTxt": answerTxt.text,
-            "userId": uid
+            "userId": uid,
+            "name": username
             ])
     }
     
