@@ -112,7 +112,7 @@ class ViewQuestionsTableViewController: UITableViewController {
             cell.cardView.backgroundColor = UIColor.blue
         }
         if (arrayOfData[indexPath.row].facTxt ==  "Science") {
-            cell.cardView.backgroundColor = UIColor.yellow
+            cell.cardView.backgroundColor = UIColor.magenta
         }
         if (arrayOfData[indexPath.row].facTxt ==  "Health") {
             cell.cardView.backgroundColor = UIColor.green
