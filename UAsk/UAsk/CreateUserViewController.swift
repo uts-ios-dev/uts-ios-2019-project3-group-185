@@ -23,6 +23,7 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
 
+    @IBOutlet weak var errorTxt: UILabel!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var facultyPicker: UIPickerView!
     @IBOutlet weak var usernameTxt: UITextField!
@@ -55,47 +56,56 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.facultyPicker.delegate = self
         
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in 
-            // Handle authenticated state
         }
         
-        // [START setup]
+        // Firestore setup
         let settings = FirestoreSettings()
-        
         Firestore.firestore().settings = settings
-        // [END setup]
         db = Firestore.firestore()
-        
-        // Do any additional setup after loading the view.
     }
     
     func checkFieldValues() -> Bool {
         guard let email = emailTxt.text, !email.isEmpty else {
+            errorTxt.text = "Please use UTS student email."
+            errorTxt.isHidden = false
             return false
         }
         
         guard let username = usernameTxt.text, !username.isEmpty else {
+            errorTxt.text = "Please input a username."
+            errorTxt.isHidden = false
             return false
         }
         
         guard let password1 = password1Txt.text, !password1.isEmpty else {
+            errorTxt.text = "Please input a password."
+            errorTxt.isHidden = false
             return false
         }
         
         guard let password2 = password2Txt.text, !password2.isEmpty else {
+            errorTxt.text = "Please input a password."
+            errorTxt.isHidden = false
             return false
         }
         
         if (!(email.contains("@student.uts.edu.au"))) {
+            errorTxt.text = "Please use UTS student email."
+            errorTxt.isHidden = false
             return false
         }
         
         let selectedValue = facultyData[facultyPicker.selectedRow(inComponent: 0)]
         
         if (selectedValue == "Faculty") {
+            errorTxt.text = "Please select your faculty."
+            errorTxt.isHidden = false
             return false
         }
         
         if (password1 != password2) {
+            errorTxt.text = "Passwords do not match"
+            errorTxt.isHidden = false
             return false
         }
         
@@ -104,50 +114,36 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
     func createFirebaseAccount() {
         guard let email = emailTxt.text, !email.isEmpty else {
+            errorTxt.text = "An error occured, please try again later."
+            errorTxt.isHidden = false
+            print("Firebase Error")
             return
         }
         
         guard let password = password1Txt.text, !password.isEmpty else {
+            errorTxt.text = "An erroroccured, please try again later;"
+            errorTxt.isHidden = false
+            print("Firebase error")
             return
         }
         
         
         
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            if let error = error, authResult == nil {
-                // do stuff to handle
+            if let _ = error, authResult == nil {
+                self.errorTxt.text = "An error occured, please try again later."
+                self.errorTxt.isHidden = false
                 print("Firebase error")
             } else {
-                print("Hello \(String(describing: Auth.auth().currentUser?.uid))")
                 let uid = Auth.auth().currentUser?.uid
-                
                 self.db.collection("users").document(uid!).setData([
-                    "name": self.usernameTxt.text,
+                    "name": self.usernameTxt.text!,
                     "faculty": self.facultyData[self.facultyPicker.selectedRow(inComponent: 0)],
                     "questions": [],
                     ])
                
             }
         }
-        
-//        Auth.auth().signIn(withEmail: email,
-//                           password: password) { (user, error) in
-//                            if let error = error, user == nil {
-//                                print("Not athenticated")
-//                                return
-//                            }
-//        }
-        
-        
-        
-//        let user = Auth.auth().currentUser
-//        if let user = user {
-//            uid = user.uid
-//            let email = user.email
-//        }
-      
-        
-        
         print("Firebase Successful")
     }
     
@@ -159,16 +155,6 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         super.viewWillDisappear(animated)
         try! Auth.auth().signOut()
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

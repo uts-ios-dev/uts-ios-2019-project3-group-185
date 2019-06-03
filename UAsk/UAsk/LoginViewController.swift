@@ -12,38 +12,13 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailEditTxt: UITextField!
-    
     @IBOutlet weak var passEditTxt: UITextField!
+    @IBOutlet weak var loginErrorTxt: UILabel!
     
     var handle: AuthStateDidChangeListenerHandle?
     
     @IBAction func buttonLogin(_ sender: Any) {
-        guard
-            let email = emailEditTxt.text,
-            let password = passEditTxt.text,
-            email.count > 0,
-            password.count > 0
-            else {
-                return
-        }
-        Auth.auth().signIn(withEmail: email,
-                           password: password) { (user, error) in
-                            if let error = error, user == nil {
-                                print("Not athenticated")
-                                return
-                            }
-                            self.performSegue(withIdentifier: "QuestionTransition", sender: self)
-                            
-        }
-        
-        
-//        if (signIn()) {
-//            print("Auth successful")
-//            self.performSegue(withIdentifier: "QuestionTransition", sender: self)
-//        } else {
-//            print("Not athenticated")
-//        }
-        
+        signIn()
     }
     
     @IBAction func buttonCreate(_ sender: Any) {
@@ -54,40 +29,27 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // Handle authenticated state
         }
-        
-        print(Auth.auth().currentUser?.uid)
     }
     
-    func signIn() -> Bool {
-        var successful = false
+    func signIn() {
         guard
             let email = emailEditTxt.text,
             let password = passEditTxt.text,
             email.count > 0,
             password.count > 0
             else {
-                return false
+                return
         }
         Auth.auth().signIn(withEmail: email,
                            password: password) { (user, error) in
-                            if let error = error, user == nil {
-                                successful = false
+                            if let _ = error, user == nil {
+                                print("Not athenticated")
+                                self.loginErrorTxt.isHidden = false
+                                return
                             }
+                            self.performSegue(withIdentifier: "QuestionTransition", sender: self)
         }
-        
-        return successful
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        do {
-//            try Auth.auth().signOut()
-//            self.dismiss(animated: true, completion: nil)
-//        } catch (let error) {
-//            print("Auth sign out failed: \(error)")
-//        }
-//    }
-
 }
 
