@@ -59,6 +59,7 @@ class AnswersViewController: UIViewController {
                     self.questionTxtLabel.text = data2
                 }
             }
+
     }
     
     func checkFieldValues() -> Bool{

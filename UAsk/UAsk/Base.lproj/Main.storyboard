@@ -492,8 +492,8 @@
     <resources>
         <image name="Background" width="375" height="667"/>
         <image name="Background 2" width="375" height="667"/>
-        <image name="Logo1" width="150" height="150"/>
+        <image name="Logo1" width="200" height="200"/>
         <image name="b3" width="375" height="668"/>
-        <image name="icons8-back-30" width="154.28572082519531" height="154.28572082519531"/>
+        <image name="icons8-back-30" width="30" height="30"/>
     </resources>
 </document>
