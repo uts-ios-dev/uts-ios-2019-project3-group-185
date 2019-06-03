@@ -14,6 +14,7 @@ class AnswersViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
+    let fDb = Firestore.firestore()
     var uid = ""
     var username = ""
     var questionUid: String?
@@ -35,6 +36,32 @@ class AnswersViewController: UIViewController {
             "name": username
             ])
     }
+    @IBOutlet weak var questionTxtLabel: UILabel!
+    
+    func setData() {
+        print("bra \(questionUid)")
+        fDb.collection("questions").document(questionUid!).getDocument()
+            { (QuerySnapshot, err) in
+                if err != nil
+                {
+                    print("Error getting documents: \(String(describing: err))");
+                }
+                else
+                {
+                    //For-loop
+                    
+                    let document = QuerySnapshot
+                    let data = document!.data()
+                    
+                    let data2 = data!["questionTxt"] as? String
+                    
+                    
+                    
+                    self.questionTxtLabel.text = data2
+                    
+                }
+        }
+    }
     
     func checkFieldValues() -> Bool{
         guard let answer = answerTxt.text, !answer.isEmpty else {
@@ -52,6 +79,8 @@ class AnswersViewController: UIViewController {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             // Handle authenticated state
         }
+        
+        setData()   
         
         // [START setup]
         let settings = FirestoreSettings()
