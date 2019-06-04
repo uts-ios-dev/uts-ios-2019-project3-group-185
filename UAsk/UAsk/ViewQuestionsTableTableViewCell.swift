@@ -4,6 +4,8 @@
 //
 //  Created by William Hong on 27/5/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
+//  View Controller for the tabe cells in the View questions
+//  page/screen
 //
 
 import UIKit

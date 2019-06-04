@@ -4,6 +4,8 @@
 //
 //  Created by William Hong on 29/5/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
+//  View Controller for the my questions page/screen (is a
+//  table view). 
 //
 
 import UIKit

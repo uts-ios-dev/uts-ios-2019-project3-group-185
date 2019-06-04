@@ -4,6 +4,7 @@
 //
 //  Created by William Hong on 3/6/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
+//  View Controller for the my answers table view cell. 
 //
 
 import UIKit

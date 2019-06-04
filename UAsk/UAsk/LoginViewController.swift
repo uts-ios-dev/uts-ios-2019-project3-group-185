@@ -4,6 +4,7 @@
 //
 //  Created by Megan Farleigh on 22/5/19.
 //  Copyright © 2019 Megan Farleigh. All rights reserved.
+//  View Controller for the Login Page/Screen
 //
 
 import UIKit
