@@ -42,7 +42,7 @@ class AnswersViewController: UIViewController {
     @IBOutlet weak var questionTxtLabel: UILabel!
     
     func setData() {
-        print("bra \(questionUid)")
+
         fDb.collection("questions").document(questionUid!).getDocument()
             { (QuerySnapshot, err) in
                 if err != nil
@@ -51,15 +51,11 @@ class AnswersViewController: UIViewController {
                 }
                 else
                 {
-                    //For-loop
-                    
+
                     let document = QuerySnapshot
                     let data = document!.data()
-                    
                     let data2 = data!["questionTxt"] as? String
-                    
-                    
-                    
+
                     self.questionTxtLabel.text = data2
                     
                 }
@@ -112,7 +108,5 @@ class AnswersViewController: UIViewController {
                 print("Document does not exist")
             }
         }
-        //        addQuestionToDb()
-        //        clearField()
     }
 }

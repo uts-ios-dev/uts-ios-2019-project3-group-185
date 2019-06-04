@@ -19,6 +19,7 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var myQuestionContent: UILabel!
     @IBOutlet weak var myQuestionsName: UILabel!
     @IBOutlet weak var answerTableView: UITableView!
+    
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -37,11 +38,8 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = Bundle.main.loadNibNamed("MyAnswersTableViewCell", owner: self, options: nil)?.first as! MyAnswersTableViewCell
-        
         cell.selectionStyle = .none
-        
         cell.answerTestLabel.text = arrayOfData[indexPath.row].answerTxt
-        //cell.cellLabelTest.text = arrayOfData[indexPath.row].nameTxt
         
         return cell
     }
@@ -63,12 +61,6 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
         
         self.present(privateAnswersViewController, animated:true, completion: nil)
     }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-     
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,13 +73,6 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
      
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        //tableView.reloadData()
-    }
-    
-   
-    
     func loadData()
     {
        
@@ -99,15 +84,12 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 else
                 {
-                    //For-loop
-                    
+
                         let document = QuerySnapshot
                         let data = document!.data()
-                        let docId = document!.documentID
                         
                         let data2 = data!["questionTxt"] as? String
                         let data3 = data!["name"]as? String
-                    
                     
                         self.myQuestionContent.text = data2
                         self.myQuestionsName.text = data3
@@ -118,9 +100,7 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     func createArray()
     {
         var tempTxt: [cellAnswerData] = []
-        
-        
-        //Choosing collection
+
         db.collection("questions").document(uId!).collection("answers").getDocuments
             { (QuerySnapshot, err) in
                 if err != nil
@@ -129,28 +109,20 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 else
                 {
-                    //For-loop
                     for document in QuerySnapshot!.documents
                     {
                         self.arrayOfData.removeAll()
-                        print("hog \(self.arrayOfData)")
                         let data = document.data()
                         
                         let data1 = data["answerTxt"] as? String
-                        
-                        
-                        
+   
                         let txt = cellAnswerData(answerTxt: data1!)
-                        print(txt)
                         
                         tempTxt.append(txt)
-                        print("LoL \(tempTxt)")
-                        
-                        
+
                     }
                     
                     self.arrayOfData = tempTxt
-                    print("LoL \(self.arrayOfData)")
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()

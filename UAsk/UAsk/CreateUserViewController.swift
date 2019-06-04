@@ -30,6 +30,9 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var password1Txt: UITextField!
     @IBOutlet weak var password2Txt: UITextField!
     
+    @IBAction func backButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "LoginTransition", sender: self)
+    }
     var email = ""
     var password = ""
     
