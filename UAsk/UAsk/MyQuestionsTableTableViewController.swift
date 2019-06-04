@@ -25,6 +25,7 @@ class MyQuestionsTableTableViewController: UITableViewController {
         createArray()
     }
     
+    //this function populates the tableview with data with database query calls to firestore
     func createArray() {
         var tempTxt: [cellData] = []
         
@@ -57,10 +58,12 @@ class MyQuestionsTableTableViewController: UITableViewController {
         }
     }
     
+     //counts the array to check how many rows of data there is
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfData.count
     }
     
+     //this function populates each respective row with its specific data group
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = Bundle.main.loadNibNamed("MyQuestionsTableViewCell", owner: self, options: nil)?.first as! MyQuestionsTableViewCell
@@ -99,11 +102,13 @@ class MyQuestionsTableTableViewController: UITableViewController {
         return cell
     }
     
+     //this function sets the height of the cell or the row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 250
     }
     
+    //this function determains what happens when the specified row is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController : String
