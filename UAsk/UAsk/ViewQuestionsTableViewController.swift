@@ -27,20 +27,14 @@ class ViewQuestionsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        //loadData()
         createArray()
-        
-        
-        
         
     }
     
     func createArray()
     {
         var tempTxt: [cellData] = []
-       
-        
-        //Choosing collection
+
         db.collection("questions").getDocuments()
             { (QuerySnapshot, err) in
                 if err != nil
@@ -49,30 +43,21 @@ class ViewQuestionsTableViewController: UITableViewController {
                 }
                 else
                 {
-                    //For-loop
                     for document in QuerySnapshot!.documents
                     {
                         self.arrayOfData.removeAll()
                         let data = document.data()
                         let docId = document.documentID
-                        
-                            let data1 = data["faculty"] as? String
-                            let data2 = data["questionTxt"] as? String
-                            let data3 = data["name"]as? String
-                            let data4 = docId
-                        
-                        
+                        let data1 = data["faculty"] as? String
+                        let data2 = data["questionTxt"] as? String
+                        let data3 = data["name"]as? String
+                        let data4 = docId
                         let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
-                            print(txt)
-                            
-                            tempTxt.append(txt)
-                            print("hello \(tempTxt)")
-                        
-                        
+                        tempTxt.append(txt)
+                 
                     }
                     
                     self.arrayOfData = tempTxt
-                    print("hello \(self.arrayOfData)")
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -152,9 +137,6 @@ class ViewQuestionsTableViewController: UITableViewController {
             self.present(privateAnswersViewController, animated:true, completion: nil)
         }
         
-        
-        
-//        self.present(privateAnswersViewController, animated:true, completion: nil)
     }
     
 }

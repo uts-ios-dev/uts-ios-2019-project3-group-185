@@ -20,16 +20,13 @@ class MyQuestionsTableTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
         createArray()
-        
     }
     
     func createArray()
     {
         var tempTxt: [cellData] = []
         
-        //Choosing collection
         db.collection("questions").whereField("userId", isEqualTo: currentUID!).getDocuments()
             { (QuerySnapshot, err) in
                 if err != nil
@@ -38,7 +35,7 @@ class MyQuestionsTableTableViewController: UITableViewController {
                 }
                 else
                 {
-                    //For-loop
+        
                     for document in QuerySnapshot!.documents
                     {
                         self.arrayOfData.removeAll()
@@ -52,16 +49,13 @@ class MyQuestionsTableTableViewController: UITableViewController {
                         let data4 = docId
                         
                         let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
-                        print(txt)
                         
                         tempTxt.append(txt)
-                        print("myhello \(tempTxt)")
-                        
                         
                     }
                     
                     self.arrayOfData = tempTxt
-                    print("myhelloarray \(self.arrayOfData)")
+
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
