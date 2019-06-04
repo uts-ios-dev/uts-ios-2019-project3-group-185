@@ -19,21 +19,18 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var myQuestionContent: UILabel!
     @IBOutlet weak var myQuestionsName: UILabel!
     @IBOutlet weak var answerTableView: UITableView!
-    
-    @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     var arrayOfData: [cellAnswerData] = []
     let db = Firestore.firestore()
     var uId: String?
     let tableView = UITableView()
     
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfData.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -70,21 +67,14 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadData()
         tableView.dataSource = self
         tableView.delegate = self
-     
     }
     
-    func loadData()
-    {
-       
+    func loadData() {
         db.collection("questions").document(uId!).getDocument()
             { (QuerySnapshot, err) in
-                if err != nil
-                {
+                if err != nil{
                     print("Error getting documents: \(String(describing: err))");
-                }
-                else
-                {
-
+                } else {
                         let document = QuerySnapshot
                         let data = document!.data()
                         
@@ -97,20 +87,15 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
             }
     }
     
-    func createArray()
-    {
+    func createArray() {
         var tempTxt: [cellAnswerData] = []
 
         db.collection("questions").document(uId!).collection("answers").getDocuments
             { (QuerySnapshot, err) in
-                if err != nil
-                {
+                if err != nil {
                     print("Error getting documents: \(String(describing: err))");
-                }
-                else
-                {
-                    for document in QuerySnapshot!.documents
-                    {
+                } else {
+                    for document in QuerySnapshot!.documents {
                         self.arrayOfData.removeAll()
                         let data = document.data()
                         
@@ -119,13 +104,12 @@ class MyAnswersViewController: UIViewController, UITableViewDelegate, UITableVie
                         let txt = cellAnswerData(answerTxt: data1!)
                         
                         tempTxt.append(txt)
-
                     }
                     
                     self.arrayOfData = tempTxt
                     
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                    self.tableView.reloadData()
                     }
                 }
         }

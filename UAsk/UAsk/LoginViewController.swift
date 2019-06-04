@@ -17,10 +17,14 @@ class LoginViewController: UIViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
     
+    // Button for signing in user
     @IBAction func buttonLogin(_ sender: Any) {
+        checkFieldValues()
         signIn()
     }
     
+    // Button for creating account. Takes user to the
+    // create account page.
     @IBAction func buttonCreate(_ sender: Any) {
         self.performSegue(withIdentifier: "CreateAccountTransition", sender: self)
     }
@@ -28,10 +32,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get firebase auth state
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
         }
     }
     
+    // Checks the values of the username and password field to ensure
+    // values have been inputted by user.
     func checkFieldValues() -> Bool {
         guard let email = emailEditTxt.text, !email.isEmpty else {
             loginErrorTxt.text = "Please input email. "
@@ -47,6 +54,8 @@ class LoginViewController: UIViewController {
         return true
     }
     
+    // Checks the credentials of the user with Firebase Authentication
+    // and lets user know if details are incorrect.
     func signIn() {
         guard
             let email = emailEditTxt.text,
@@ -56,6 +65,8 @@ class LoginViewController: UIViewController {
             else {
                 return
         }
+        
+        // Firebase Authentication to sign in user
         Auth.auth().signIn(withEmail: email,
                            password: password) { (user, error) in
                             if let _ = error, user == nil {
@@ -64,6 +75,9 @@ class LoginViewController: UIViewController {
                                 self.loginErrorTxt.isHidden = false
                                 return
                             }
+                            
+                            // Takes user to AskQuestion page if sign in was
+                            // successful. 
                             self.performSegue(withIdentifier: "QuestionTransition", sender: self)
         }
     }

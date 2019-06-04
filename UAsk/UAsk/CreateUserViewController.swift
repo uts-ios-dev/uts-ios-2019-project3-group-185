@@ -12,16 +12,14 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return facultyData.count
-    }
     
     var handle: AuthStateDidChangeListenerHandle?
     var db: Firestore!
+    
+    var email = ""
+    var password = ""
+    var facultyData = ["Faculty","Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
 
     @IBOutlet weak var errorTxt: UILabel!
     @IBOutlet weak var emailTxt: UITextField!
@@ -30,23 +28,36 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var password1Txt: UITextField!
     @IBOutlet weak var password2Txt: UITextField!
     
+    // Back button to take user back to login screen.
     @IBAction func backButton(_ sender: Any) {
         self.performSegue(withIdentifier: "LoginTransition", sender: self)
     }
-    var email = ""
-    var password = ""
-    
-    var facultyData = ["Faculty","Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
-    
+   
+    // Called when the user selects the create account button
+    // to create an account in Firebase
     @IBAction func createAccountButton(_ sender: Any) {
         if (checkFieldValues()) {
             createFirebaseAccount()
+            
+            // Calls login transition segue
             self.performSegue(withIdentifier: "LoginTransition", sender: self)
         } else {
             print("Failed")
         }
     }
     
+    // Function for pickerView to return numberOfComponents
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Function for pickerView which returns the total count
+    // of the data stored in it.
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return facultyData.count
+    }
+    
+    // Function for pickerView for loading the data in the pickerView
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return facultyData[row]
     }
@@ -54,10 +65,12 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set-up and initalise pickerView with data.
         facultyData = ["Faculty", "Engineering and IT", "Arts and Social Sciences", "Design, Architecture and Building", "Law", "Business", "Science", "Health", "Trans-Disciplinary Innovation"]
         self.facultyPicker.dataSource = self
         self.facultyPicker.delegate = self
         
+        //  Firebase Auth set-up
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in 
         }
         
@@ -67,6 +80,8 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         db = Firestore.firestore()
     }
     
+    // Checks the UI fields have the correct values, otherwise the
+    // user will be notified to input the correct values.
     func checkFieldValues() -> Bool {
         guard let email = emailTxt.text, !email.isEmpty else {
             errorTxt.text = "Please use UTS student email."
@@ -115,6 +130,7 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         return true
     }
 
+    // Creates account in Firebase Auth and Firestore
     func createFirebaseAccount() {
         guard let email = emailTxt.text, !email.isEmpty else {
             errorTxt.text = "An error occured, please try again later."
@@ -131,13 +147,14 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
         
         
-        
+        // Creating account in Firebase Auth
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let _ = error, authResult == nil {
                 self.errorTxt.text = "An error occured, please try again later."
                 self.errorTxt.isHidden = false
                 print("Firebase error")
             } else {
+                // Creates account in Firestore
                 let uid = Auth.auth().currentUser?.uid
                 self.db.collection("users").document(uid!).setData([
                     "name": self.usernameTxt.text!,
@@ -156,11 +173,15 @@ class CreateUserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        // Clears Firebase auth state
         try! Auth.auth().signOut()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        // Clears Firebase auth state
         try! Auth.auth().signOut()
     }
     

@@ -35,6 +35,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         self.facultyPicker.dataSource = self
         self.facultyPicker.delegate = self
         
+        // Set up Firebase Auth
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
         }
         
@@ -46,8 +47,11 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         getUserData()
     }
 
+    // Sign out user when button is pressed. The user is
+    // taken back to the sign-in screen.
     @IBAction func signOutBtn(_ sender: Any) {
         do {
+            // Sign's out with Firebase Auth
             try Auth.auth().signOut()
         } catch {
             print("Auth error")
@@ -56,26 +60,28 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
             let viewController : String
             viewController = "LoginViewController"
             
-            
             if let loginViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? LoginViewController {
                 self.present(loginViewController, animated:true, completion: nil)
             }
     }
-        
-
     
+    // Function for pickerView to return numberOfComponents
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    // Function for pickerView which returns the total count
+    // of the data stored in it.
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return facultyData.count
     }
     
+    // Function for pickerView for loading the data in the pickerView
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return facultyData[row]
     }
     
+    // Button click when the user wishes to submit a question.
     @IBAction func submitQuestion(_ sender: Any) {
         if (checkFieldValues()) {
             addQuestionToDb()
@@ -84,6 +90,9 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    // Checks the  values of the UI fields to ensure they have
+    // the correct values. If they do not, the user is
+    // notified to input the correct values.
     func checkFieldValues() -> Bool {
         let selectedValue = facultyData[facultyPicker.selectedRow(inComponent: 0)]
         
@@ -102,14 +111,16 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         return true
     }
 
+    // Gets the current user's data from Firebase Auth and Firestore
     func getUserData() {
+        // Firebase Auth
         let user = Auth.auth().currentUser
         if let user = user {
             uid = user.uid
         }
         
+        // Firestore
         let docRef = db.collection("users").document(uid)
-        
         docRef.getDocument { (document, error) in
             if let data = document?.data(), document?.exists ?? false {
                 print(data["name"]!)
@@ -120,6 +131,7 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
+    // Adds question to the Firestore database
     func addQuestionToDb() {
         db.collection("questions").addDocument(data: [
             "faculty": facultyData[facultyPicker.selectedRow(inComponent: 0)],
@@ -129,11 +141,13 @@ class AskQuestionViewController: UIViewController, UIPickerViewDelegate, UIPicke
             ])
     }
     
+    // Clears all the UI fields to their default state.
     func clearField() {
         questionTxt.text.removeAll()
         facultyPicker.reloadAllComponents()
     }
     
+    // Displays notification text of successful question submission
     func showSuccessTxt() {
         successfulTxt.isHidden = false
     }

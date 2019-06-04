@@ -31,20 +31,15 @@ class ViewQuestionsTableViewController: UITableViewController {
         
     }
     
-    func createArray()
-    {
+    func createArray() {
         var tempTxt: [cellData] = []
 
         db.collection("questions").getDocuments()
             { (QuerySnapshot, err) in
-                if err != nil
-                {
+                if err != nil {
                     print("Error getting documents: \(String(describing: err))");
-                }
-                else
-                {
-                    for document in QuerySnapshot!.documents
-                    {
+                } else {
+                    for document in QuerySnapshot!.documents {
                         self.arrayOfData.removeAll()
                         let data = document.data()
                         let docId = document.documentID
@@ -54,12 +49,11 @@ class ViewQuestionsTableViewController: UITableViewController {
                         let data4 = docId
                         let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
                         tempTxt.append(txt)
-                 
                     }
                     
                     self.arrayOfData = tempTxt
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                    self.tableView.reloadData()
                     }
                 }
         }
@@ -73,7 +67,6 @@ class ViewQuestionsTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
         
         cell.selectionStyle = .none
@@ -119,7 +112,6 @@ class ViewQuestionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 250
     }
     
@@ -136,7 +128,5 @@ class ViewQuestionsTableViewController: UITableViewController {
         
             self.present(privateAnswersViewController, animated:true, completion: nil)
         }
-        
     }
-    
 }
