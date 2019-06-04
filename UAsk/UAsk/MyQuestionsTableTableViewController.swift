@@ -23,21 +23,15 @@ class MyQuestionsTableTableViewController: UITableViewController {
         createArray()
     }
     
-    func createArray()
-    {
+    func createArray() {
         var tempTxt: [cellData] = []
         
         db.collection("questions").whereField("userId", isEqualTo: currentUID!).getDocuments()
             { (QuerySnapshot, err) in
-                if err != nil
-                {
+                if err != nil {
                     print("Error getting documents: \(String(describing: err))");
-                }
-                else
-                {
-        
-                    for document in QuerySnapshot!.documents
-                    {
+                } else {
+                    for document in QuerySnapshot!.documents {
                         self.arrayOfData.removeAll()
                         
                         let data = document.data()
@@ -51,9 +45,7 @@ class MyQuestionsTableTableViewController: UITableViewController {
                         let txt = cellData(facTxt: data1!, quesTxt: data2!, nameTxt: data3!, docId: data4)
                         
                         tempTxt.append(txt)
-                        
                     }
-                    
                     self.arrayOfData = tempTxt
 
                     DispatchQueue.main.async {
@@ -122,12 +114,7 @@ class MyQuestionsTableTableViewController: UITableViewController {
         if let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? MyAnswersViewController {
             
             privateAnswersViewController.uId = arrayOfData[indexPath.row].docId
-            
             self.present(privateAnswersViewController, animated:true, completion: nil)
-            
         }
-        
-       
     }
-    
 }

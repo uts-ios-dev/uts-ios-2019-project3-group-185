@@ -8,7 +8,7 @@
 
 import Foundation
 
+// UAsk Error class for handling errors. 
 enum UAskError: Error {
     case FirebaseAuthenticationError
-    
 }
