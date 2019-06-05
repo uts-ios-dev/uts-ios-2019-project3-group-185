@@ -10,7 +10,7 @@
 
 import UIKit
 
-
+//this class connects the tableview to the cell and the xib file to allow for custom cells 
 class ViewQuestionsTableTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellLabelTest: UILabel!

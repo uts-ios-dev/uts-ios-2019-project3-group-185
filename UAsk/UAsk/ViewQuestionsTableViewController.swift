@@ -33,6 +33,7 @@ class ViewQuestionsTableViewController: UITableViewController {
         
     }
     
+     //this function populates the tableview with data with database query calls to firestore
     func createArray() {
         var tempTxt: [cellData] = []
 
@@ -60,15 +61,17 @@ class ViewQuestionsTableViewController: UITableViewController {
                 }
         }
     }
-
     
-    
+    //counts the array to check how many rows of data there is
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfData.count
     }
     
-
+    
+    //this function populates each respective row with its specific data group
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //this links the row or cell to the specific custom cell xib file
         let cell = Bundle.main.loadNibNamed("ViewQuestionsTableTableViewCell", owner: self, options: nil)?.first as! ViewQuestionsTableTableViewCell
         
         cell.selectionStyle = .none
@@ -76,6 +79,7 @@ class ViewQuestionsTableViewController: UITableViewController {
         cell.cellLabelContent.text = arrayOfData[indexPath.row].quesTxt
         cell.cellLabelTest.text = arrayOfData[indexPath.row].nameTxt
         
+        //sets the background color of the imageview depending on the data fetched from firestore
         if (arrayOfData[indexPath.row].facTxt == "Engineering and IT") {
             cell.cardView.backgroundColor = UIColor.red
         }
@@ -100,7 +104,8 @@ class ViewQuestionsTableViewController: UITableViewController {
         if (arrayOfData[indexPath.row].facTxt ==  "Trans-Disciplinary Innovation") {
             cell.cardView.backgroundColor = UIColor.lightGray
         }
-
+        
+        //sets the properties of the imageview
         cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 5)
         cell.cardView.layer.shadowColor = UIColor.black.cgColor
         cell.cardView.layer.shadowOpacity = 0.3
@@ -113,10 +118,12 @@ class ViewQuestionsTableViewController: UITableViewController {
         return cell
     }
     
+    //this function sets the height of the cell or the row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
     }
     
+    //this function determains what happens when the specified row is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController : String
@@ -125,6 +132,7 @@ class ViewQuestionsTableViewController: UITableViewController {
             viewController = "AnswersViewController"
         }
         
+        //sets the variable directly within the specified view. it basically passes data from one view to another while transitioning
        if let privateAnswersViewController = storyboard.instantiateViewController(withIdentifier: viewController) as? AnswersViewController {
             privateAnswersViewController.questionUid = arrayOfData[indexPath.row].docId
         
